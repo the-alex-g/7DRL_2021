@@ -11,10 +11,9 @@ const ENEMIES := [
 ]
 
 # exported variables
-export var _time_before_enemies_respawn := 240
+export var _time_before_enemies_respawn := 120
 
 # variables
-var _max_enemies := 0
 var current_enemies := 0
 
 # onready variables
@@ -23,7 +22,12 @@ onready var _timer := $Timer
 
 
 func _ready()->void:
-	_max_enemies = _enemy_spawn_points.get_child_count()
+	_ignore = _timer.connect("timeout", self, "_on_timer_timeout")
+	_timer.one_shot = true
+	_spawn_enemies()
+
+
+func _on_timer_timeout()->void:
 	_spawn_enemies()
 
 
@@ -35,7 +39,13 @@ func _spawn_enemies()->void:
 		var enemy:KinematicBody2D = load(enemy_path).instance()
 		current_enemies += 1
 		enemy.position = spawn_point.get_global_transform().origin
+		_ignore = enemy.connect("dead", self, "_on_enemy_dead")
 		enemies.append(enemy)
 	emit_signal("spawn_enemies", enemies)
 
+
+func _on_enemy_dead()->void:
+	current_enemies -= 1
+	if current_enemies == 0:
+		_timer.start(_time_before_enemies_respawn)
 

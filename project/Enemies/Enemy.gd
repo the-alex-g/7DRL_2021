@@ -2,6 +2,7 @@ class_name Enemy
 extends KinematicBody2D
 
 # signals
+signal dead
 
 # enums
 enum State {ACTIVE, DEAD, IDLE}
@@ -36,4 +37,6 @@ func _on_update_player_position(new_position)->void:
 
 
 func take_damage(damage):
-	queue_free()
+	if _state == State.ACTIVE:
+		emit_signal("dead")
+		queue_free()

@@ -23,12 +23,18 @@ onready var _bombrange := $Sprite
 
 func _ready()->void:
 	set_friction(1)
-	var velocity := (get_global_transform().origin-get_global_mouse_position()).normalized()*50
+	_target_position = get_global_mouse_position()
+	var velocity := (get_global_transform().origin-_target_position).normalized()*50
 	velocity = velocity.rotated(PI)
 	apply_impulse(Vector2.ZERO, velocity)
 
 
-func _on_Timer_timeout():
+func _process(_delta)->void:
+	if (get_global_transform().origin-_target_position).length_squared() < 10:
+		sleeping = true
+
+
+func _on_Timer_timeout()->void:
 	if not _bombrange.visible:
 		_bombrange.visible = true
 		_timer.start(0.5)
