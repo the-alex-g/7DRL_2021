@@ -3,6 +3,7 @@ extends Node2D
 # signals
 signal update_bridges
 signal update_player_position(new_position)
+signal item_picked_up(item)
 # enums
 
 # constants
@@ -29,3 +30,7 @@ func _on_spawn_enemies(enemies:Array)->void:
 
 func _on_update_position(player_position)->void:
 	emit_signal("update_player_position", player_position)
+
+
+func _on_item_picked_up(item:Dictionary)->void:
+	emit_signal("item_picked_up", item)

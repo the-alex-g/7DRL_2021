@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Items/ItemFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Art/Scroll.png" type="Texture" id=2]
+[ext_resource path="res://Items/EquippedItem.gd" type="Script" id=3]
+
+[node name="EquippedItem" type="TextureRect"]
+margin_right = 32.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "empty"
+centered = false
