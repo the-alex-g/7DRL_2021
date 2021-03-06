@@ -10,3 +10,4 @@ script = ExtResource( 1 )
 margin_right = 104.0
 margin_bottom = 68.0
 [connection signal="item_picked_up" from="." to="GridContainer" method="_on_HUD_item_picked_up"]
+[connection signal="equipped_item" from="GridContainer" to="." method="_on_GridContainer_equipped_item"]

@@ -1,6 +1,7 @@
 extends GridContainer
 
 # signals
+signal equipped_item(item)
 
 # enums
 
@@ -32,6 +33,7 @@ func _on_InventoryItem_inventory_item_equipped(item:Dictionary, slot:int):
 		"detonator":
 			former_item = _equipped_detonator.item
 			_equipped_detonator.change_item(item)
+	emit_signal("equipped_item", item)
 	inventory_slot.change_item(former_item)
 
 
@@ -41,6 +43,7 @@ func _on_HUD_item_picked_up(item):
 		"cloak":
 			if _equipped_cloak.item.hash() == {}.hash():
 				_equipped_cloak.change_item(item)
+				emit_signal("equipped_item", item)
 			elif _filled_inventory_slots < 3:
 				var inventory_slot = get_node("InventoryItem"+str(_filled_inventory_slots+1))
 				inventory_slot.change_item(item)
@@ -48,6 +51,16 @@ func _on_HUD_item_picked_up(item):
 		"staff":
 			if _equipped_staff.item.hash() == {}.hash():
 				_equipped_staff.change_item(item)
+				emit_signal("equipped_item", item)
+			elif _filled_inventory_slots < 3:
+				var inventory_slot = get_node("InventoryItem"+str(_filled_inventory_slots+1))
+				inventory_slot.change_item(item)
+				_filled_inventory_slots += 1
 		"detonator":
 			if _equipped_detonator.item.hash() == {}.hash():
 				_equipped_detonator.change_item(item)
+				emit_signal("equipped_item", item)
+			elif _filled_inventory_slots < 3:
+				var inventory_slot = get_node("InventoryItem"+str(_filled_inventory_slots+1))
+				inventory_slot.change_item(item)
+				_filled_inventory_slots += 1

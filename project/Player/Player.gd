@@ -15,7 +15,14 @@ export var _speed := 100
 # variables
 var _ignore
 var _weapon_type := "staff"
-var _clothes_type := "blue_robes"
+var _clothes_type := "robe_blue"
+var _damage_taken := 1
+var _damage_dealt := 2
+var _armor := 0
+var _heal_delay := 1
+var _cloak_bonuses := {}
+var _staff_bonuses := {}
+var _detonator_bonuses := {}
 
 # onready variables
 onready var _weapon := $Weapons
@@ -60,3 +67,31 @@ func take_damage(damage)->void:
 
 func is_player()->void:
 	pass
+
+
+func _on_item_equipped(item:Dictionary)->void:
+	if item.hash() != {}.hash():
+		var item_type:String = item["type"]
+		var item_properties:Dictionary = item["properties"]
+		match item_type:
+			"cloak":
+				for property in _cloak_bonuses:
+					set(property, get(property)-_cloak_bonuses[property])
+				for property in item_properties:
+					set(property, get(property)+item_properties[property])
+				_cloak_bonuses = item_properties
+				_clothes_type = item["player_anim_type"]
+			"staff":
+				for property in _staff_bonuses:
+					set(property, get(property)-_staff_bonuses[property])
+				for property in item_properties:
+					set(property, get(property)+item_properties[property])
+				_staff_bonuses = item_properties
+				_weapon_type = item["player_anim_type"]
+			"detonator":
+				for property in _detonator_bonuses:
+					set(property, get(property)-_detonator_bonuses[property])
+				for property in item_properties:
+					set(property, get(property)+item_properties[property])
+				_detonator_bonuses = item_properties
+		print(_damage_dealt, " ", _damage_taken, " ", _armor, " ", _speed, " ", _heal_delay)
