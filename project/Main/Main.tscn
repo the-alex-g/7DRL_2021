@@ -7,4 +7,6 @@
 script = ExtResource( 2 )
 
 [node name="MapGenerator" parent="." instance=ExtResource( 1 )]
+
+[node name="Enemies" type="Node2D" parent="."]
 [connection signal="update_bridges" from="." to="MapGenerator" method="_on_Main_update_bridges"]

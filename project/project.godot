@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Enemies/Enemy.gd"
+}, {
 "base": "Node2D",
 "class": "MapSegment",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Player/Player.gd"
 } ]
 _global_script_class_icons={
+"Enemy": "",
 "MapSegment": "",
 "Player": ""
 }
@@ -27,6 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="7DRL"
+run/main_scene="res://Main/Main.tscn"
 config/icon="res://icon.png"
 
 [display]

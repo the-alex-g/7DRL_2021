@@ -17,3 +17,5 @@ func _ready():
 	var player:KinematicBody2D = load(PLAYER).instance()
 	player.position = player_starting_location.get_global_transform().origin
 	emit_signal("spawn_player", player)
+
+

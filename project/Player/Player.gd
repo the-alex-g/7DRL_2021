@@ -2,13 +2,14 @@ class_name Player
 extends KinematicBody2D
 
 # signals
+signal update_position(new_position)
 
 # enums
 
 # constants
 
 # exported variables
-export var _speed := 200
+export var _speed := 100
 
 # variables
 var _ignore
@@ -34,6 +35,7 @@ func _physics_process(delta)->void:
 		rotation = velocity.angle()
 		velocity *= _speed*delta
 		_ignore = move_and_collide(velocity)
+		emit_signal("update_position", get_global_transform().origin)
 	_get_animation(velocity)
 
 
