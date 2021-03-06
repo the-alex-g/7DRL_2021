@@ -54,6 +54,3 @@ script = ExtResource( 3 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IslandAreas/Area2D3"]
 position = Vector2( 0, 224 )
 polygon = PoolVector2Array( 48, -32, 32, -16, 32, 48, 48, 64, 144, 64, 160, 48, 160, -16, 144, -32 )
-[connection signal="body_entered" from="IslandAreas/Area2D" to="IslandAreas/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="IslandAreas/Area2D2" to="IslandAreas/Area2D2" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="IslandAreas/Area2D3" to="IslandAreas/Area2D3" method="_on_Area2D_body_entered"]

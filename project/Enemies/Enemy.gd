@@ -33,3 +33,7 @@ func _process(delta)->void:
 
 func _on_update_player_position(new_position)->void:
 	_target_position = new_position
+
+
+func take_damage(damage):
+	queue_free()
