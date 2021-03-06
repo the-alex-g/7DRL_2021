@@ -1,3 +1,4 @@
+class_name MapSegment
 extends Node2D
 
 # signals
@@ -8,7 +9,6 @@ extends Node2D
 const BRIDGE_INDEXES := [13, 14]
 const CONNECTION_INDEXES := [15, 16, 17, 18]
 const CONNECTION_TO_SIDE := {15:12, 16:10, 17:11, 18:9}
-const BOSS_BRIDGE_ADVANCEMENT := {19:21, 21:23, 20:22, 22:24, 32:33, 33:13, 25:27, 26:28}
 const BOSS_BRIDGE_SECTIONS := [19, 20, 32, 33, 26, 25]
 
 # exported variables
@@ -145,17 +145,4 @@ func _check_if_has_tile(tile:Dictionary, array_to_check:Array)->bool:
 		if item.hash() == tile.hash():
 			return true
 	return false
-
-
-func update_boss_bridges()->void:
-	var new_boss_tiles := []
-	for tile in _boss_bridge_sections:
-		var tile_index:int = tile["index"]
-		var tile_position:Vector2 = tile["position"]
-		if BOSS_BRIDGE_ADVANCEMENT.has(tile_index):
-			var next_tile:int = BOSS_BRIDGE_ADVANCEMENT[tile_index]
-			var new_tile := {"position":tile_position, "index":next_tile}
-			new_boss_tiles.append(new_tile)
-			_tilemap.set_cellv(tile_position, next_tile)
-	_boss_bridge_sections = new_boss_tiles
 

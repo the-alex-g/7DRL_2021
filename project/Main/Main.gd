@@ -13,8 +13,10 @@ var _ignore
 
 # onready variables
 
+func _on_spawn_player(player:KinematicBody2D)->void:
+	call_deferred("add_child", player)
 
-func _process(delta):
-	if Input.is_action_just_pressed("ui_up"):
-		emit_signal("update_bridges")
 
+func _on_spawn_enemies(enemies:Array)->void:
+	for enemy in enemies:
+		call_deferred("add_child", enemy)

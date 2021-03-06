@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Map/TileSegments/Segment.gd" type="Script" id=1]
+[ext_resource path="res://Map/TileSegments/NormalSegment.gd" type="Script" id=1]
 [ext_resource path="res://Map/TileSegments/IslandTiles.tres" type="TileSet" id=2]
 
 [node name="Segment0" type="Node2D"]
