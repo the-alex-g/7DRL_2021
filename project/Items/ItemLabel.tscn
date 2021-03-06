@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Items/ItemLabel.gd" type="Script" id=1]
+[ext_resource path="res://Items/ItemLabel.tres" type="StyleBox" id=2]
+
+[node name="Label" type="Label"]
+margin_left = 18.0
+margin_top = -32.0
+margin_right = 177.0
+margin_bottom = 14.0
+custom_styles/normal = ExtResource( 2 )
+autowrap = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

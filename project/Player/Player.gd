@@ -54,9 +54,9 @@ func _get_animation(velocity:Vector2)->void:
 	_clothes.play(anim_type+_clothes_type)
 
 
-func take_damage(damage):
+func take_damage(damage)->void:
 	print("OW")
 
 
-func is_player():
+func is_player()->void:
 	pass

@@ -8,6 +8,7 @@ signal dead
 enum State {ACTIVE, DEAD, IDLE}
 
 # constants
+const ITEM_DROP := "res://Items/ItemDrop.tscn"
 
 # exported variables
 export var speed = 100
@@ -39,4 +40,7 @@ func _on_update_player_position(new_position)->void:
 func take_damage(damage):
 	if _state == State.ACTIVE:
 		emit_signal("dead")
+		var item:Node2D = load(ITEM_DROP).instance()
+		item.position = get_global_transform().origin
+		get_parent().add_child(item)
 		queue_free()
