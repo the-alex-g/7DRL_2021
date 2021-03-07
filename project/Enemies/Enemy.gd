@@ -21,10 +21,12 @@ var _state = State.IDLE
 var _target_position := Vector2.ZERO
 var active := false
 var _health := 4
+var _drop_frequency := 3
 
 # onready variables
 onready var _collision_shape := $CollisionShape2D
 onready var _sprite := $AnimatedSprite
+onready var _animation_player := $AnimationPlayer
 
 func _process(delta)->void:
 	if _state == State.IDLE:
@@ -39,6 +41,8 @@ func _process(delta)->void:
 		var velocity:Vector2 = direction.normalized()*_speed*delta
 		_ignore = move_and_collide(velocity)
 	elif _state == State.DEAD:
+		_sprite.play(_type+"_idle")
+		_animation_player.play("Die")
 		_collision_shape.disabled = true
 	elif _state == State.ATTACKING:
 		_sprite.play(_type+"_attack")
@@ -58,8 +62,12 @@ func take_damage(damage)->void:
 
 
 func _spawn_item()->void:
-	var should_spawn_item := (randi()%3) > 1
+	var should_spawn_item := (randi()%_drop_frequency) > _drop_frequency-2
 	if should_spawn_item:
 		var item:Node2D = load(ITEM_DROP).instance()
 		item.position = get_global_transform().origin
 		get_parent().add_child(item)
+
+
+func _on_AnimationPlayer_animation_finished(_anim_name):
+	queue_free()

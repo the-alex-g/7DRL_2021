@@ -19,6 +19,7 @@ onready var _punch_anim_timer := $PunchAnimTimer
 
 
 func _ready()->void:
+	_drop_frequency = 1
 	_health = 9
 
 
