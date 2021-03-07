@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 [connection signal="item_picked_up" from="." to="HUD" method="_on_Main_item_picked_up"]
+[connection signal="player_dead" from="." to="HUD" method="_on_Main_player_dead"]
 [connection signal="powers_updated" from="." to="HUD" method="_on_Main_powers_updated"]
 [connection signal="update_bridges" from="." to="MapGenerator" method="_on_Main_update_bridges"]
 [connection signal="update_health" from="." to="HUD" method="_on_Main_update_health"]

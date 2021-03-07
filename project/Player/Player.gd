@@ -5,6 +5,7 @@ extends KinematicBody2D
 signal update_position(new_position)
 signal update_powers(powers)
 signal update_health(health)
+signal dead
 
 # enums
 
@@ -28,6 +29,7 @@ var _cloak_bonuses := {}
 var _staff_bonuses := {}
 var _detonator_bonuses := {}
 var _detonator_type := "blue"
+var _dead := false
 
 # onready variables
 onready var _weapon := $Weapons
@@ -41,29 +43,30 @@ func _ready()->void:
 
 
 func _physics_process(delta)->void:
-	var velocity := Vector2.ZERO
-	if Input.is_action_pressed("down"):
-		velocity.y += 1
-	if Input.is_action_pressed("up"):
-		velocity.y -= 1
-	if Input.is_action_pressed("right"):
-		velocity.x += 1
-	if Input.is_action_pressed("left"):
-		velocity.x -= 1
-	if velocity != Vector2.ZERO:
-		rotation = velocity.angle()
-		velocity *= _speed*delta
-		_ignore = move_and_collide(velocity)
-		emit_signal("update_position", get_global_transform().origin)
-	_get_animation(velocity)
-	
-	if Input.is_action_just_pressed("launch_bomb"):
-		var detonator = DETONATOR.instance()
-		detonator.position = get_global_transform().origin
-		detonator.type = _detonator_type
-		detonator.damage = _damage_dealt
-		take_damage(_damage_taken)
-		get_parent().add_child(detonator)
+	if not _dead:
+		var velocity := Vector2.ZERO
+		if Input.is_action_pressed("down"):
+			velocity.y += 1
+		if Input.is_action_pressed("up"):
+			velocity.y -= 1
+		if Input.is_action_pressed("right"):
+			velocity.x += 1
+		if Input.is_action_pressed("left"):
+			velocity.x -= 1
+		if velocity != Vector2.ZERO:
+			rotation = velocity.angle()
+			velocity *= _speed*delta
+			_ignore = move_and_collide(velocity)
+			emit_signal("update_position", get_global_transform().origin)
+		_get_animation(velocity)
+		
+		if Input.is_action_just_pressed("launch_bomb"):
+			var detonator = DETONATOR.instance()
+			detonator.position = get_global_transform().origin
+			detonator.type = _detonator_type
+			detonator.damage = _damage_dealt
+			take_damage(_damage_taken)
+			get_parent().add_child(detonator)
 
 
 func _get_animation(velocity:Vector2)->void:
@@ -76,10 +79,15 @@ func _get_animation(velocity:Vector2)->void:
 
 
 func take_damage(damage)->void:
-	_heal_delay_timer.stop()
-	_health -= damage-_armor
-	emit_signal("update_health", _health)
-	_heal_delay_timer.start(_heal_delay)
+	if not _dead:
+		_health -= damage-_armor
+		_heal_delay_timer.stop()
+		if _health <= 0:
+			_dead = true
+			emit_signal("dead")
+		else:
+			emit_signal("update_health", _health)
+			_heal_delay_timer.start(_heal_delay)
 
 
 func is_player()->void:
@@ -117,5 +125,6 @@ func _on_item_equipped(item:Dictionary)->void:
 
 
 func _on_HealDelayTimer_timeout()->void:
-	_health = _max_health
-	emit_signal("update_health", _health)
+	if not _dead:
+		_health = _max_health
+		emit_signal("update_health", _health)

@@ -19,8 +19,8 @@ onready var _leap_cooldown_timer := $Timer
 
 
 func _ready()->void:
-	damage = 2
-	type = "bman"
+	_damage = 2
+	_type = "bman"
 	_health = 4
 
 
@@ -34,7 +34,7 @@ func _process(delta:float)->void:
 		var collision := move_and_collide(_leap_velocity*delta)
 		if collision != null:
 			if collision.collider is Player:
-				collision.collider.take_damage(damage)
+				collision.collider.take_damage(_damage)
 				_state = State.PAUSED
 				_leap_cooldown_timer.start()
 		if (get_global_transform().origin-_leap_target).length_squared() < 250:
@@ -44,11 +44,11 @@ func _process(delta:float)->void:
 
 func _leap_at()->void:
 	_state = State.ATTACKING
-	speed = 40
+	_speed = 40
 	_leap_target = _target_position
 	_leap_direction = _leap_target-get_global_transform().origin
 	rotation = _leap_direction.angle()
-	_leap_velocity = _leap_direction.normalized()*speed
+	_leap_velocity = _leap_direction.normalized()*_speed
 
 
 
