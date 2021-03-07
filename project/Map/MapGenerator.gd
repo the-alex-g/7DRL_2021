@@ -12,7 +12,15 @@ const _MAP_SEGMENT_EXTENSION := ".tscn"
 const _SEGMENT_SIZE := 9
 const _CELL_SIZE := 32
 const _TILE_SEGMENTS := 1
-const _MAP_POSITIONS := [
+
+# exported variables
+
+# variables
+var _ignore
+var _boss_segment_0:Node2D
+var _boss_segment_1:Node2D
+var _boss_segment_2:Node2D
+var _map_positions := [
 	{"position":Vector2(0,0), "sides":{"north":true, "south":false, "west":true, "east":false}},
 	{"position":Vector2(0,1), "sides":{"north":false, "south":false, "west":true, "east":false}},
 	{"position":Vector2(0,2), "sides":{"north":false, "south":true, "west":true, "east":false}},
@@ -27,14 +35,6 @@ const _MAP_POSITIONS := [
 	{"position":Vector2(3,1), "sides":{"north":false, "south":true, "west":false, "east":true}},
 ]
 
-# exported variables
-
-# variables
-var _ignore
-var _boss_segment_0:Node2D
-var _boss_segment_1:Node2D
-var _boss_segment_2:Node2D
-
 # onready variables
 onready var _map_segments := $MapSegments
 
@@ -42,11 +42,10 @@ onready var _map_segments := $MapSegments
 func _ready():
 	randomize()
 	for i in 4:
-		var map_positions := _MAP_POSITIONS.size()
+		var map_positions := _map_positions.size()
 		var index := randi()%map_positions
-		var map_position:Dictionary = _MAP_POSITIONS[index]
-		print(map_position)
-		_MAP_POSITIONS.remove(index)
+		var map_position:Dictionary = _map_positions[index]
+		_map_positions.remove(index)
 		var tile_segment_position:Vector2 = map_position["position"]
 		tile_segment_position *= _SEGMENT_SIZE*_CELL_SIZE
 		if i < 3:
@@ -69,21 +68,19 @@ func _ready():
 			_ignore = start_segment.connect("spawn_enemies", get_parent(), "_on_spawn_enemies")
 			_map_segments.add_child(start_segment)
 			
-		
-	for spot in _MAP_POSITIONS:
-		print(spot)
-		var tile_segment_position:Vector2 = spot["position"]
+	print("special tiles generated \n")
+	for map_position in _map_positions:
+		var tile_segment_position:Vector2 = map_position["position"]
 		var tile_segment_index := randi()%_TILE_SEGMENTS
 		var segment_to_load := _MAP_SEGMENT+str(tile_segment_index)+_MAP_SEGMENT_EXTENSION
 		var segment:Node2D = load(segment_to_load).instance()
 		tile_segment_position *= _SEGMENT_SIZE*_CELL_SIZE
 		segment.position = tile_segment_position
-		for side in spot["sides"]:
-			var side_value:bool = spot["sides"][side]
+		for side in map_position["sides"]:
+			var side_value:bool = map_position["sides"][side]
 			segment.set(side, side_value)
 		_ignore = segment.connect("spawn_enemies", get_parent(), "_on_spawn_enemies")
 		_map_segments.add_child(segment)
-	print("\n")
 
 
 func _on_Main_update_bridges():
