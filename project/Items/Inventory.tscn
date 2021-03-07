@@ -1,48 +1,109 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Items/EquippedItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Items/InventoryItem.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Items/Inventory.gd" type="Script" id=3]
+[ext_resource path="res://Art/Shield.png" type="Texture" id=4]
+[ext_resource path="res://Art/HealthBarFill.png" type="Texture" id=5]
+[ext_resource path="res://Art/Arrow.png" type="Texture" id=6]
+[ext_resource path="res://Theme.tres" type="Theme" id=7]
 
-[node name="Inventory" type="GridContainer"]
+[node name="Inventory" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
-columns = 3
+theme = ExtResource( 7 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cloak" parent="." instance=ExtResource( 1 )]
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Staff" parent="." instance=ExtResource( 1 )]
+[node name="Cloak" parent="GridContainer" instance=ExtResource( 1 )]
+
+[node name="Staff" parent="GridContainer" instance=ExtResource( 1 )]
 margin_left = 36.0
 margin_right = 68.0
 
-[node name="Detonator" parent="." instance=ExtResource( 1 )]
+[node name="Detonator" parent="GridContainer" instance=ExtResource( 1 )]
 margin_left = 72.0
 margin_right = 104.0
 
-[node name="InventoryItem1" parent="." instance=ExtResource( 2 )]
+[node name="InventoryItem1" parent="GridContainer" instance=ExtResource( 2 )]
 margin_top = 36.0
 margin_bottom = 68.0
 
-[node name="InventoryItem2" parent="." instance=ExtResource( 2 )]
+[node name="InventoryItem2" parent="GridContainer" instance=ExtResource( 2 )]
 margin_left = 36.0
 margin_top = 36.0
 margin_right = 68.0
 margin_bottom = 68.0
 _inventory_slot = 2
 
-[node name="InventoryItem3" parent="." instance=ExtResource( 2 )]
+[node name="InventoryItem3" parent="GridContainer" instance=ExtResource( 2 )]
 margin_left = 72.0
 margin_top = 36.0
 margin_right = 104.0
 margin_bottom = 68.0
 _inventory_slot = 3
-[connection signal="inventory_item_equipped" from="InventoryItem1" to="." method="_on_InventoryItem_inventory_item_equipped"]
-[connection signal="item_dropped" from="InventoryItem1" to="." method="_on_InventoryItem_item_dropped"]
-[connection signal="inventory_item_equipped" from="InventoryItem2" to="." method="_on_InventoryItem_inventory_item_equipped"]
-[connection signal="item_dropped" from="InventoryItem2" to="." method="_on_InventoryItem_item_dropped"]
-[connection signal="inventory_item_equipped" from="InventoryItem3" to="." method="_on_InventoryItem_inventory_item_equipped"]
-[connection signal="item_dropped" from="InventoryItem3" to="." method="_on_InventoryItem_item_dropped"]
+
+[node name="Armor" type="TextureRect" parent="GridContainer"]
+margin_top = 72.0
+margin_right = 32.0
+margin_bottom = 104.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="GridContainer/Armor"]
+margin_right = 33.0
+margin_bottom = 33.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Damage" type="TextureRect" parent="GridContainer"]
+margin_left = 36.0
+margin_top = 72.0
+margin_right = 68.0
+margin_bottom = 104.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Label2" type="Label" parent="GridContainer/Damage"]
+margin_right = 33.0
+margin_bottom = 32.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageTaken" type="TextureRect" parent="GridContainer"]
+margin_left = 72.0
+margin_top = 72.0
+margin_right = 104.0
+margin_bottom = 104.0
+texture = ExtResource( 6 )
+
+[node name="Label2" type="Label" parent="GridContainer/DamageTaken"]
+margin_top = -1.0
+margin_right = 32.0
+margin_bottom = 32.0
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="inventory_item_equipped" from="GridContainer/InventoryItem1" to="." method="_on_InventoryItem_inventory_item_equipped"]
+[connection signal="item_dropped" from="GridContainer/InventoryItem1" to="." method="_on_InventoryItem_item_dropped"]
+[connection signal="inventory_item_equipped" from="GridContainer/InventoryItem2" to="." method="_on_InventoryItem_inventory_item_equipped"]
+[connection signal="item_dropped" from="GridContainer/InventoryItem2" to="." method="_on_InventoryItem_item_dropped"]
+[connection signal="inventory_item_equipped" from="GridContainer/InventoryItem3" to="." method="_on_InventoryItem_inventory_item_equipped"]
+[connection signal="item_dropped" from="GridContainer/InventoryItem3" to="." method="_on_InventoryItem_item_dropped"]

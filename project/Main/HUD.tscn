@@ -7,7 +7,14 @@
 script = ExtResource( 1 )
 
 [node name="GridContainer" parent="." instance=ExtResource( 2 )]
-margin_right = 104.0
-margin_bottom = 68.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -52.0
+margin_top = -122.033
+margin_right = 52.0
+margin_bottom = -18.0326
 [connection signal="item_picked_up" from="." to="GridContainer" method="_on_HUD_item_picked_up"]
+[connection signal="powers_updated" from="." to="GridContainer" method="_on_HUD_powers_updated"]
 [connection signal="equipped_item" from="GridContainer" to="." method="_on_GridContainer_equipped_item"]

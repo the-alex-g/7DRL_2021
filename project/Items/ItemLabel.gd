@@ -18,6 +18,9 @@ var _ignore
 
 func _ready()->void:
 	set("custom_styles/normal", load(STYLEBOX))
+	margin_left = 34
+	margin_top = -16
+	margin_right = 180
 
 
 func generate_text(item:Dictionary):

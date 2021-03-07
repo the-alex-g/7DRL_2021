@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 # signals
 signal update_position(new_position)
+signal update_powers(powers)
 
 # enums
 
@@ -28,6 +29,11 @@ var _detonator_type := "blue"
 # onready variables
 onready var _weapon := $Weapons
 onready var _clothes := $Clothes
+
+
+func _ready()->void:
+	var power_dictionary := {"armor":_armor, "damage":_damage_dealt, "damage taken":_damage_taken}
+	emit_signal("update_powers", power_dictionary)
 
 
 func _physics_process(delta)->void:
@@ -96,4 +102,7 @@ func _on_item_equipped(item:Dictionary)->void:
 					set(property, get(property)-_detonator_bonuses[property])
 				for property in item_properties:
 					set(property, get(property)+item_properties[property])
+				_detonator_type = item["player_anim_type"]
 				_detonator_bonuses = item_properties
+		var power_dictionary := {"armor":_armor, "damage":_damage_dealt, "damage taken":_damage_taken}
+		emit_signal("update_powers", power_dictionary)

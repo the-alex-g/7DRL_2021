@@ -2,7 +2,7 @@ extends TextureRect
 
 # signals
 signal inventory_item_equipped(item, slot)
-signal item_dropped(item, slot)
+signal item_dropped(slot)
 
 # enums
 
@@ -31,21 +31,19 @@ func _process(_delta:float)->void:
 		emit_signal("inventory_item_equipped", _item, _inventory_slot)
 	if Input.is_action_just_pressed("drop_item"):
 		_reset()
-		emit_signal("item_dropped", _item, _inventory_slot)
+		emit_signal("item_dropped", _inventory_slot)
 		change_item({})
 
 
 func _reset()->void:
 	_label.queue_free()
 	_label = ItemLabel.new()
-	set_as_toplevel(false)
 
 
 func _on_InventoryItem_mouse_entered():
 	if _item.size() != 0:
-		set_as_toplevel(true)
 		_label.generate_text(_item)
-		add_child(_label)
+		get_parent().get_parent().add_child(_label)
 		_focused = true
 
 
