@@ -23,6 +23,7 @@ var _heal_delay := 1
 var _cloak_bonuses := {}
 var _staff_bonuses := {}
 var _detonator_bonuses := {}
+var _detonator_type := "blue"
 
 # onready variables
 onready var _weapon := $Weapons
@@ -49,6 +50,8 @@ func _physics_process(delta)->void:
 	if Input.is_action_just_pressed("launch_bomb"):
 		var detonator = DETONATOR.instance()
 		detonator.position = get_global_transform().origin
+		detonator.type = _detonator_type
+		detonator.damage = _damage_dealt
 		get_parent().add_child(detonator)
 
 
@@ -94,4 +97,3 @@ func _on_item_equipped(item:Dictionary)->void:
 				for property in item_properties:
 					set(property, get(property)+item_properties[property])
 				_detonator_bonuses = item_properties
-		print(_damage_dealt, " ", _damage_taken, " ", _armor, " ", _speed, " ", _heal_delay)

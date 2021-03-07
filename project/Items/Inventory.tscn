@@ -41,5 +41,8 @@ margin_right = 104.0
 margin_bottom = 68.0
 _inventory_slot = 3
 [connection signal="inventory_item_equipped" from="InventoryItem1" to="." method="_on_InventoryItem_inventory_item_equipped"]
+[connection signal="item_dropped" from="InventoryItem1" to="." method="_on_InventoryItem_item_dropped"]
 [connection signal="inventory_item_equipped" from="InventoryItem2" to="." method="_on_InventoryItem_inventory_item_equipped"]
+[connection signal="item_dropped" from="InventoryItem2" to="." method="_on_InventoryItem_item_dropped"]
 [connection signal="inventory_item_equipped" from="InventoryItem3" to="." method="_on_InventoryItem_inventory_item_equipped"]
+[connection signal="item_dropped" from="InventoryItem3" to="." method="_on_InventoryItem_item_dropped"]

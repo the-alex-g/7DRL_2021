@@ -2,6 +2,7 @@ extends TextureRect
 
 # signals
 signal inventory_item_equipped(item, slot)
+signal item_dropped(item, slot)
 
 # enums
 
@@ -21,22 +22,17 @@ onready var _item_image := $AnimatedSprite
 
 
 func _process(_delta:float)->void:
-	if is_set_as_toplevel():
-		if Input.is_action_just_pressed("back"):
-			_reset()
-		if Input.is_action_just_pressed("equip"):
-			_reset()
-			emit_signal("inventory_item_equipped", _item, _inventory_slot)
-		if Input.is_action_just_pressed("remove"):
-			_reset()
-			change_item({})
 	if not _focused:
 		return
-		
-	if Input.is_action_just_pressed("select") and _item.hash() != {}.hash():
-		set_as_toplevel(true)
-		_label.generate_text(_item)
-		add_child(_label)
+	if Input.is_action_just_pressed("back"):
+		_reset()
+	if Input.is_action_just_pressed("equip"):
+		_reset()
+		emit_signal("inventory_item_equipped", _item, _inventory_slot)
+	if Input.is_action_just_pressed("drop_item"):
+		_reset()
+		emit_signal("item_dropped", _item, _inventory_slot)
+		change_item({})
 
 
 func _reset()->void:
@@ -46,10 +42,15 @@ func _reset()->void:
 
 
 func _on_InventoryItem_mouse_entered():
-	_focused = true
+	if _item.size() != 0:
+		set_as_toplevel(true)
+		_label.generate_text(_item)
+		add_child(_label)
+		_focused = true
 
 
 func _on_InventoryItem_mouse_exited():
+	_reset()
 	_focused = false
 
 

@@ -11,7 +11,7 @@ signal equipped_item(item)
 
 # variables
 var _ignore
-var _filled_inventory_slots := 0
+var _inventory_slots := {}
 
 # onready variables
 onready var _equipped_cloak := $Cloak
@@ -44,23 +44,43 @@ func _on_HUD_item_picked_up(item):
 			if _equipped_cloak.item.hash() == {}.hash():
 				_equipped_cloak.change_item(item)
 				emit_signal("equipped_item", item)
-			elif _filled_inventory_slots < 3:
-				var inventory_slot = get_node("InventoryItem"+str(_filled_inventory_slots+1))
+			elif _inventory_slots.size() < 3:
+				var next_slot := _get_next_slot()
+				var inventory_slot = get_node("InventoryItem"+str(next_slot))
 				inventory_slot.change_item(item)
-				_filled_inventory_slots += 1
+				_inventory_slots[next_slot] = item
 		"staff":
 			if _equipped_staff.item.hash() == {}.hash():
 				_equipped_staff.change_item(item)
 				emit_signal("equipped_item", item)
-			elif _filled_inventory_slots < 3:
-				var inventory_slot = get_node("InventoryItem"+str(_filled_inventory_slots+1))
+			elif _inventory_slots.size() < 3:
+				var next_slot := _get_next_slot()
+				var inventory_slot = get_node("InventoryItem"+str(next_slot))
 				inventory_slot.change_item(item)
-				_filled_inventory_slots += 1
+				_inventory_slots[next_slot] = item
 		"detonator":
 			if _equipped_detonator.item.hash() == {}.hash():
 				_equipped_detonator.change_item(item)
 				emit_signal("equipped_item", item)
-			elif _filled_inventory_slots < 3:
-				var inventory_slot = get_node("InventoryItem"+str(_filled_inventory_slots+1))
+			elif _inventory_slots.size() < 3:
+				var next_slot := _get_next_slot()
+				var inventory_slot = get_node("InventoryItem"+str(next_slot))
 				inventory_slot.change_item(item)
-				_filled_inventory_slots += 1
+				_inventory_slots[next_slot] = item
+
+
+func _get_next_slot()->int:
+	var next_slot := 4
+	var all_slots := [1,2,3]
+	for slot in _inventory_slots:
+		if all_slots.has(slot):
+			all_slots.erase(slot)
+	for available_slot in all_slots:
+		if available_slot < next_slot:
+			next_slot = available_slot
+	return next_slot
+
+
+func _on_InventoryItem_item_dropped(item, slot):
+	if _inventory_slots.has(slot):
+		_inventory_slots.erase(slot)

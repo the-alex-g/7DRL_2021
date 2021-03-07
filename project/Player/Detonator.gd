@@ -13,6 +13,7 @@ extends RigidBody2D
 var _ignore
 var _target_position := Vector2.ZERO
 var damage := 2
+var type := "blue"
 
 # onready variables
 onready var _tween := $Tween
@@ -23,6 +24,7 @@ onready var _bombrange := $Sprite
 
 func _ready()->void:
 	set_friction(1)
+	$AnimatedSprite.play(type)
 	_target_position = get_global_mouse_position()
 	var velocity := (get_global_transform().origin-_target_position).normalized()*50
 	velocity = velocity.rotated(PI)
