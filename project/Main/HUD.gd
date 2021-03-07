@@ -45,7 +45,6 @@ func _on_Main_powers_updated(powers:Dictionary)->void:
 
 func _on_Main_update_health(current_health:int)->void:
 	var difference:float = abs(_healthbar.value-current_health)
-	print(difference)
 	var interpolation_time := difference/30.0
 	_tween.interpolate_property(_healthbar, "value", null, current_health, interpolation_time)
 	_tween.start()

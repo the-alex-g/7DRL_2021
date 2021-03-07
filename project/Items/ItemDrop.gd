@@ -11,7 +11,7 @@ const ITEM_TYPES := [
 	{"name":"Robe of the Dying Sun", "type":"cloak", "anim_name":"cloak_red", "player_anim_type":"robe_red", "properties":{"_damage_dealt":2, "_damage_taken":1}},
 	{"name":"Robe of the Living Garden", "type":"cloak", "anim_name":"cloak_green", "player_anim_type":"robe_green", "properties":{"_damage_taken":-1}},
 	{"name":"Armored Robe", "anim_name":"cloak_armored", "type":"cloak", "player_anim_type":"robe_armored", "properties":{"_armor":1}},
-	{"name":"Robe of Quick Healing", "type":"cloak", "anim_name":"cloak_green", "player_anim_type":"robe_green", "properties":{"_heal_delay":-0.5}},
+	{"name":"Robe of Quick Healing", "type":"cloak", "anim_name":"cloak_green", "player_anim_type":"robe_green", "properties":{"_heal_delay":-1}},
 ]
 
 # exported variables

@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Enemies/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/Boulderman.gd" type="Script" id=1]
 [ext_resource path="res://Art/Boulderman.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -27,6 +31,11 @@ region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
+"frames": [ SubResource( 9 ) ],
+"loop": true,
+"name": "bman_attack",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "bman_idle",
@@ -38,17 +47,29 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CircleShape2D" id=8]
+radius = 48.8106
+
 [node name="Boulderman" type="KinematicBody2D"]
 scale = Vector2( 0.75, 0.75 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
-speed = 50
+type = "bman"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
-animation = "bman_idle"
+animation = "bman_attack"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 8 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
