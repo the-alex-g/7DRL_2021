@@ -70,6 +70,7 @@ func _ready():
 
 	for spot in _MAP_POSITIONS:
 		var tile_segment_position:Vector2 = spot["position"]
+		print(tile_segment_position)
 		var tile_segment_index := randi()%_TILE_SEGMENTS
 		var segment_to_load := _MAP_SEGMENT+str(tile_segment_index)+_MAP_SEGMENT_EXTENSION
 		var segment:Node2D = load(segment_to_load).instance()

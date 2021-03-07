@@ -30,11 +30,14 @@ var _staff_bonuses := {}
 var _detonator_bonuses := {}
 var _detonator_type := "blue"
 var _dead := false
+var _can_throw_bomb := true
+var _cooldown_time := 1
 
 # onready variables
 onready var _weapon := $Weapons
 onready var _clothes := $Clothes
 onready var _heal_delay_timer := $HealDelayTimer
+onready var _bomb_delay_timer := $BombTimer
 
 
 func _ready()->void:
@@ -61,12 +64,15 @@ func _physics_process(delta)->void:
 		_get_animation(velocity)
 		
 		if Input.is_action_just_pressed("launch_bomb"):
-			var detonator = DETONATOR.instance()
-			detonator.position = get_global_transform().origin
-			detonator.type = _detonator_type
-			detonator.damage = _damage_dealt
-			take_damage(_damage_taken)
-			get_parent().add_child(detonator)
+			if _can_throw_bomb:
+				var detonator = DETONATOR.instance()
+				detonator.position = get_global_transform().origin
+				detonator.type = _detonator_type
+				detonator.damage = _damage_dealt
+				take_damage(_damage_taken, false)
+				get_parent().add_child(detonator)
+				_can_throw_bomb = false
+				_bomb_delay_timer.start(_cooldown_time)
 
 
 func _get_animation(velocity:Vector2)->void:
@@ -78,9 +84,9 @@ func _get_animation(velocity:Vector2)->void:
 	_clothes.play(anim_type+_clothes_type)
 
 
-func take_damage(damage)->void:
+func take_damage(damage, armor_applies:bool = true)->void:
 	if not _dead:
-		_health -= damage-_armor
+		_health -= (damage-_armor) if armor_applies else damage
 		_heal_delay_timer.stop()
 		if _health <= 0:
 			_dead = true
@@ -128,3 +134,7 @@ func _on_HealDelayTimer_timeout()->void:
 	if not _dead:
 		_health = _max_health
 		emit_signal("update_health", _health)
+
+
+func _on_BombTimer_timeout():
+	_can_throw_bomb = true

@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ -150.0, -74.0 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "fade_out"
 length = 1.8
 tracks/0/type = "value"
@@ -76,8 +76,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "up"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Inventory/TextureRect:margin_top")
@@ -108,7 +107,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -59.0
-margin_top = -150.0
+margin_top = -74.0
 margin_right = 59.0
 texture = ExtResource( 5 )
 __meta__ = {
@@ -143,8 +142,8 @@ margin_bottom = -76.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/down = SubResource( 1 )
-anims/fade_out = SubResource( 3 )
-anims/up = SubResource( 2 )
+anims/fade_out = SubResource( 2 )
+anims/up = SubResource( 3 )
 
 [node name="Foreground" parent="." instance=ExtResource( 6 )]
 visible = false

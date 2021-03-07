@@ -54,4 +54,5 @@ func _leap_at()->void:
 
 func _on_Timer_timeout()->void:
 	if _state != State.DEAD:
+		_speed = 25
 		_state = State.ACTIVE
