@@ -48,28 +48,41 @@ func _on_HUD_item_picked_up(item):
 				_equipped_cloak.change_item(item)
 				emit_signal("equipped_item", item)
 			elif _inventory_slots.size() < 3:
-				var next_slot := _get_next_slot()
-				var inventory_slot = get_node("GridContainer/InventoryItem"+str(next_slot))
-				inventory_slot.change_item(item)
-				_inventory_slots[next_slot] = item
+				_put_in_inventory(item)
 		"staff":
 			if _equipped_staff.item.hash() == {}.hash():
 				_equipped_staff.change_item(item)
 				emit_signal("equipped_item", item)
 			elif _inventory_slots.size() < 3:
-				var next_slot := _get_next_slot()
-				var inventory_slot = get_node("GridContainer/InventoryItem"+str(next_slot))
-				inventory_slot.change_item(item)
-				_inventory_slots[next_slot] = item
+				_put_in_inventory(item)
 		"detonator":
 			if _equipped_detonator.item.hash() == {}.hash():
 				_equipped_detonator.change_item(item)
 				emit_signal("equipped_item", item)
 			elif _inventory_slots.size() < 3:
-				var next_slot := _get_next_slot()
-				var inventory_slot = get_node("GridContainer/InventoryItem"+str(next_slot))
-				inventory_slot.change_item(item)
-				_inventory_slots[next_slot] = item
+				_put_in_inventory(item)
+		"crystal":
+			var crystals := 0
+			for i in _inventory_slots:
+				if _inventory_slots[i]["type"] == "crystal":
+					crystals += 1
+			match crystals:
+				0:
+					$GridContainer/InventoryItem3.change_item(item)
+					_inventory_slots[3] = item
+				1:
+					$GridContainer/InventoryItem2.change_item(item)
+					_inventory_slots[2] = item
+				2:
+					$GridContainer/InventoryItem1.change_item(item)
+					_inventory_slots[1] = item
+
+
+func _put_in_inventory(item:Dictionary)->void:
+	var next_slot := _get_next_slot()
+	var inventory_slot = get_node("GridContainer/InventoryItem"+str(next_slot))
+	inventory_slot.change_item(item)
+	_inventory_slots[next_slot] = item
 
 
 func _get_next_slot()->int:

@@ -45,6 +45,7 @@ func _ready():
 		var map_positions := _MAP_POSITIONS.size()
 		var index := randi()%map_positions
 		var map_position:Dictionary = _MAP_POSITIONS[index]
+		print(map_position)
 		_MAP_POSITIONS.remove(index)
 		var tile_segment_position:Vector2 = map_position["position"]
 		tile_segment_position *= _SEGMENT_SIZE*_CELL_SIZE
@@ -68,8 +69,9 @@ func _ready():
 			_ignore = start_segment.connect("spawn_enemies", get_parent(), "_on_spawn_enemies")
 			_map_segments.add_child(start_segment)
 			
-
+		
 	for spot in _MAP_POSITIONS:
+		print(spot)
 		var tile_segment_position:Vector2 = spot["position"]
 		var tile_segment_index := randi()%_TILE_SEGMENTS
 		var segment_to_load := _MAP_SEGMENT+str(tile_segment_index)+_MAP_SEGMENT_EXTENSION
@@ -81,6 +83,7 @@ func _ready():
 			segment.set(side, side_value)
 		_ignore = segment.connect("spawn_enemies", get_parent(), "_on_spawn_enemies")
 		_map_segments.add_child(segment)
+	print("\n")
 
 
 func _on_Main_update_bridges():

@@ -22,17 +22,19 @@ onready var _item_image := $AnimatedSprite
 
 
 func _process(_delta:float)->void:
-	if not _focused:
-		return
-	if Input.is_action_just_pressed("back"):
-		_reset()
-	if Input.is_action_just_pressed("equip"):
-		_reset()
-		emit_signal("inventory_item_equipped", _item, _inventory_slot)
-	if Input.is_action_just_pressed("drop_item"):
-		_reset()
-		emit_signal("item_dropped", _inventory_slot)
-		change_item({})
+	if _item.size() != 0:
+		if _item["type"] != "crystal":
+			if not _focused:
+				return
+			if Input.is_action_just_pressed("back"):
+				_reset()
+			if Input.is_action_just_pressed("equip"):
+				_reset()
+				emit_signal("inventory_item_equipped", _item, _inventory_slot)
+			if Input.is_action_just_pressed("drop_item"):
+				_reset()
+				emit_signal("item_dropped", _inventory_slot)
+				change_item({})
 
 
 func _reset()->void:
@@ -42,14 +44,18 @@ func _reset()->void:
 
 func _on_InventoryItem_mouse_entered():
 	if _item.size() != 0:
-		_label.generate_text(_item)
-		get_parent().get_parent().add_child(_label)
-		_focused = true
+		if _item["type"] != "crystal":
+			if _item.size() != 0:
+				_label.generate_text(_item)
+				get_parent().get_parent().add_child(_label)
+				_focused = true
 
 
 func _on_InventoryItem_mouse_exited():
-	_reset()
-	_focused = false
+	if _item.size() != 0:
+		if _item["type"] != "crystal":
+			_reset()
+			_focused = false
 
 
 func change_item(new_item:Dictionary)->void:
