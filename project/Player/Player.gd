@@ -31,7 +31,7 @@ var _detonator_bonuses := {}
 var _detonator_type := "blue"
 var _dead := false
 var _can_throw_bomb := true
-var _cooldown_time := 1
+var _cooldown_time := 1.6
 
 # onready variables
 onready var _weapon := $Weapons

@@ -8,35 +8,35 @@
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 32, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 16, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ SubResource( 1 ) ],
 "loop": true,
 "name": "blue",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 5 ) ],
+"frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "green",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 6 ) ],
+"frames": [ SubResource( 3 ) ],
 "loop": true,
 "name": "red",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=5]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=6]
 radius = 32.0
 
 [node name="Detonator" type="RigidBody2D"]
@@ -44,7 +44,7 @@ gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 4 )
 animation = "green"
 
 [node name="Timer" type="Timer" parent="."]
@@ -54,7 +54,7 @@ autostart = true
 [node name="Tween" type="Tween" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 disabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -64,5 +64,5 @@ texture = ExtResource( 3 )
 [node name="DamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

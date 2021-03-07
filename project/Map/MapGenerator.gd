@@ -52,6 +52,7 @@ func _ready():
 			var boss_segment_to_load := _BOSS_SEGMENT+str(i)+_MAP_SEGMENT_EXTENSION
 			var boss_segment:Node2D = load(boss_segment_to_load).instance()
 			boss_segment.position = tile_segment_position
+			boss_segment.connect("spawn_boss", get_parent(), "_on_spawn_boss")
 			for side in map_position["sides"]:
 				var side_value:bool = map_position["sides"][side]
 				boss_segment.set(side, side_value)
@@ -70,7 +71,6 @@ func _ready():
 
 	for spot in _MAP_POSITIONS:
 		var tile_segment_position:Vector2 = spot["position"]
-		print(tile_segment_position)
 		var tile_segment_index := randi()%_TILE_SEGMENTS
 		var segment_to_load := _MAP_SEGMENT+str(tile_segment_index)+_MAP_SEGMENT_EXTENSION
 		var segment:Node2D = load(segment_to_load).instance()

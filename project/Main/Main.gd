@@ -37,11 +37,18 @@ func _on_spawn_enemies(enemies:Array)->void:
 		call_deferred("add_child", enemy)
 
 
+func _on_spawn_boss(boss:KinematicBody2D)->void:
+	_ignore = connect("update_player_position", boss, "_on_update_player_position")
+	call_deferred("add_child", boss)
+
+
 func _on_update_position(player_position:Vector2)->void:
 	emit_signal("update_player_position", player_position)
 
 
 func _on_item_picked_up(item:Dictionary)->void:
+	if item["type"] == "crystal":
+		emit_signal("update_bridges")
 	emit_signal("item_picked_up", item)
 
 

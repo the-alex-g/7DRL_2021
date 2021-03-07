@@ -7,7 +7,7 @@ signal picked_up(item)
 
 # constants
 const ITEM_TYPES := [
-	{"name":"Robe of Speed", "type":"cloak", "anim_name":"cloak_blue", "player_anim_type":"robe_blue", "properties":{"_speed":10}},
+	{"name":"Robe of Speed", "type":"cloak", "anim_name":"cloak_blue", "player_anim_type":"robe_blue", "properties":{"_speed":20}},
 	{"name":"Robe of the Dying Sun", "type":"cloak", "anim_name":"cloak_red", "player_anim_type":"robe_red", "properties":{"_damage_dealt":2, "_damage_taken":1}},
 	{"name":"Robe of the Living Garden", "type":"cloak", "anim_name":"cloak_green", "player_anim_type":"robe_green", "properties":{"_damage_taken":-1}},
 	{"name":"Armored Robe", "anim_name":"cloak_armored", "type":"cloak", "player_anim_type":"robe_armored", "properties":{"_armor":1}},
