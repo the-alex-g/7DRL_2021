@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Arrow.png-b56f04d1758996141f2ed93e732b5504.stex"
+path="res://.import/InventoryBorder.png-f90bded144f1f5f8200e744b7143a1ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Arrow.png"
-dest_files=[ "res://.import/Arrow.png-b56f04d1758996141f2ed93e732b5504.stex" ]
+source_file="res://Art/InventoryBorder.png"
+dest_files=[ "res://.import/InventoryBorder.png-f90bded144f1f5f8200e744b7143a1ac.stex" ]
 
 [params]
 

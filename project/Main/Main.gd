@@ -6,6 +6,7 @@ signal update_player_position(new_position)
 signal item_picked_up(item)
 signal item_equipped(item)
 signal powers_updated(powers)
+signal update_health(health)
 # enums
 
 # constants
@@ -23,6 +24,7 @@ onready var _hud = $HUD
 func _on_spawn_player(player:KinematicBody2D)->void:
 	_ignore = player.connect("update_position", self, "_on_update_position")
 	_ignore = player.connect("update_powers", self, "_on_powers_update")
+	_ignore = player.connect("update_health", self, "_on_player_update_health")
 	_ignore = connect("item_equipped", player, "_on_item_equipped")
 	call_deferred("add_child", player)
 
@@ -47,3 +49,8 @@ func _on_HUD_item_equipped(item:Dictionary)->void:
 
 func _on_powers_update(powers:Dictionary)->void:
 	emit_signal("powers_updated", powers)
+
+
+func _on_player_update_health(health):
+	emit_signal("update_health", health)
+

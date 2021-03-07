@@ -4,6 +4,7 @@ extends KinematicBody2D
 # signals
 signal update_position(new_position)
 signal update_powers(powers)
+signal update_health(health)
 
 # enums
 
@@ -12,6 +13,7 @@ const DETONATOR = preload("res://Player/Detonator.tscn")
 
 # exported variables
 export var _speed := 100
+export var _heal_delay := 3
 
 # variables
 var _ignore
@@ -19,8 +21,9 @@ var _weapon_type := "staff"
 var _clothes_type := "robe_blue"
 var _damage_taken := 1
 var _damage_dealt := 2
+var _max_health := 6
+var _health := 6
 var _armor := 0
-var _heal_delay := 1
 var _cloak_bonuses := {}
 var _staff_bonuses := {}
 var _detonator_bonuses := {}
@@ -29,6 +32,7 @@ var _detonator_type := "blue"
 # onready variables
 onready var _weapon := $Weapons
 onready var _clothes := $Clothes
+onready var _heal_delay_timer := $HealDelayTimer
 
 
 func _ready()->void:
@@ -58,6 +62,7 @@ func _physics_process(delta)->void:
 		detonator.position = get_global_transform().origin
 		detonator.type = _detonator_type
 		detonator.damage = _damage_dealt
+		take_damage(_damage_taken)
 		get_parent().add_child(detonator)
 
 
@@ -71,7 +76,10 @@ func _get_animation(velocity:Vector2)->void:
 
 
 func take_damage(damage)->void:
-	print("OW")
+	_heal_delay_timer.stop()
+	_health -= damage-_armor
+	emit_signal("update_health", _health)
+	_heal_delay_timer.start(_heal_delay)
 
 
 func is_player()->void:
@@ -106,3 +114,8 @@ func _on_item_equipped(item:Dictionary)->void:
 				_detonator_bonuses = item_properties
 		var power_dictionary := {"armor":_armor, "damage":_damage_dealt, "damage taken":_damage_taken}
 		emit_signal("update_powers", power_dictionary)
+
+
+func _on_HealDelayTimer_timeout()->void:
+	_health = _max_health
+	emit_signal("update_health", _health)
