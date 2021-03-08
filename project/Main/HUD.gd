@@ -60,3 +60,7 @@ func _on_Main_player_dead():
 
 func _on_Button_pressed():
 	_ignore = get_tree().change_scene("res://Main/Main.tscn")
+
+
+func _on_Main_pressed():
+	_ignore = get_tree().change_scene("res://Main/MainMenu.tscn")

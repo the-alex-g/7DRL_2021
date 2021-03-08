@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "fade_out"
-length = 1.8
+length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Foreground:modulate")
 tracks/0/interp = 1
@@ -58,7 +58,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.8 ),
+"times": PoolRealArray( 4 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -70,10 +70,34 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.8, 1.8 ),
+"times": PoolRealArray( 4, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Foreground/Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.8, 4.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Foreground/Label:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.8, 1.8, 3.8, 4.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -107,7 +131,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -59.0
-margin_top = -74.0
+margin_top = -150.0
 margin_right = 59.0
 texture = ExtResource( 5 )
 __meta__ = {
@@ -149,9 +173,22 @@ anims/up = SubResource( 3 )
 visible = false
 theme = ExtResource( 7 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Foreground"]
+[node name="Label" type="Label" parent="Foreground"]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
+margin_left = 234.0
+margin_top = 231.0
+margin_right = 366.0
+margin_bottom = 321.0
+text = "Let's ty that again.
+
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Foreground"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -164,22 +201,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Foreground/VBoxContainer"]
-margin_right = 132.0
-margin_bottom = 90.0
-text = "Let's ty that again.
-
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Button" type="Button" parent="Foreground/VBoxContainer"]
-margin_top = 94.0
 margin_right = 132.0
-margin_bottom = 138.0
+margin_bottom = 44.0
 text = "Play Again"
+
+[node name="Main" type="Button" parent="Foreground/VBoxContainer"]
+margin_top = 48.0
+margin_right = 132.0
+margin_bottom = 92.0
+text = "Main Menu"
 [connection signal="item_picked_up" from="." to="Inventory/TextureRect/GridContainer" method="_on_HUD_item_picked_up"]
 [connection signal="powers_updated" from="." to="Inventory/TextureRect/GridContainer" method="_on_HUD_powers_updated"]
 [connection signal="equipped_item" from="Inventory/TextureRect/GridContainer" to="." method="_on_GridContainer_equipped_item"]
 [connection signal="pressed" from="Foreground/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Foreground/VBoxContainer/Main" to="." method="_on_Main_pressed"]
