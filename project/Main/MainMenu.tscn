@@ -45,139 +45,196 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -162.5
-margin_top = -214.0
-margin_right = 162.5
-margin_bottom = 214.0
+margin_left = -206.5
+margin_top = -266.0
+margin_right = 206.5
+margin_bottom = 266.0
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Change" type="Button" parent="Settings"]
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 44.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Movement"
 
 [node name="Movement" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 8.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 36.0
 text = "Movemet-WASD"
+align = 1
 
 [node name="Change2" type="Button" parent="Settings"]
 margin_top = 48.0
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 92.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Pickup"
 
 [node name="Pickup" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 56.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 84.0
 text = "Pickup Item-F"
+align = 1
 
 [node name="Change3" type="Button" parent="Settings"]
 margin_top = 96.0
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 140.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Discard"
 
 [node name="Discard" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 104.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 132.0
 text = "Discard Item-R"
+align = 1
 
 [node name="Change4" type="Button" parent="Settings"]
 margin_top = 144.0
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 188.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Equip"
 
 [node name="Equip" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 152.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 180.0
 text = "Equip Item-Left Click"
+align = 1
 
 [node name="Change5" type="Button" parent="Settings"]
 margin_top = 192.0
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 236.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Discard_Inventory"
 
 [node name="DiscardInventory" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 200.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 228.0
 text = "Discard Inventory Item-Right Click"
+align = 1
 
 [node name="Change6" type="Button" parent="Settings"]
 margin_top = 240.0
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 284.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Attack"
 
 [node name="Attack" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 248.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 276.0
 text = "Attack-Left Click"
+align = 1
 
 [node name="Change7" type="Button" parent="Settings"]
 margin_top = 288.0
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 332.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Inventory"
 
 [node name="Inventory" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 296.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 324.0
 text = "Expand Inventory-I"
+align = 1
 
 [node name="Change8" type="Button" parent="Settings"]
 margin_top = 336.0
-margin_right = 66.0
+margin_right = 154.0
 margin_bottom = 380.0
 text = "Change"
 script = ExtResource( 4 )
 _action_type = "Interact"
 
 [node name="Interact" type="Label" parent="Settings"]
-margin_left = 70.0
+margin_left = 158.0
 margin_top = 344.0
-margin_right = 325.0
+margin_right = 413.0
 margin_bottom = 372.0
 text = "Interact-E"
+align = 1
+
+[node name="Fullscreen" type="CheckButton" parent="Settings"]
+margin_top = 384.0
+margin_right = 154.0
+margin_bottom = 432.0
+text = "Fullscreen"
+
+[node name="Mute" type="CheckButton" parent="Settings"]
+margin_left = 158.0
+margin_top = 384.0
+margin_right = 413.0
+margin_bottom = 432.0
+text = "Mute"
+
+[node name="Label" type="Label" parent="Settings"]
+margin_top = 436.0
+margin_right = 154.0
+margin_bottom = 464.0
+text = "Sound Effects Volume"
+
+[node name="Label2" type="Label" parent="Settings"]
+margin_left = 158.0
+margin_top = 436.0
+margin_right = 413.0
+margin_bottom = 464.0
+text = "Music Volume"
+align = 1
+
+[node name="SFXVolume" type="HSlider" parent="Settings"]
+margin_top = 468.0
+margin_right = 154.0
+margin_bottom = 484.0
+min_value = -6.0
+max_value = 6.0
+
+[node name="MusicVolume" type="HSlider" parent="Settings"]
+margin_left = 158.0
+margin_top = 468.0
+margin_right = 413.0
+margin_bottom = 484.0
+min_value = -6.0
+max_value = 6.0
 
 [node name="Back" type="Button" parent="Settings"]
-margin_top = 384.0
-margin_right = 66.0
-margin_bottom = 428.0
+margin_top = 488.0
+margin_right = 154.0
+margin_bottom = 532.0
 text = "Back"
+
+[node name="Reset" type="Button" parent="Settings"]
+margin_left = 158.0
+margin_top = 488.0
+margin_right = 413.0
+margin_bottom = 532.0
+text = "Reset to Defaults"
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="change_input" from="Settings/Change" to="." method="_on_Change_change_input"]
@@ -188,4 +245,9 @@ text = "Back"
 [connection signal="change_input" from="Settings/Change6" to="." method="_on_Change_change_input"]
 [connection signal="change_input" from="Settings/Change7" to="." method="_on_Change_change_input"]
 [connection signal="change_input" from="Settings/Change8" to="." method="_on_Change_change_input"]
+[connection signal="toggled" from="Settings/Fullscreen" to="." method="_on_Fullscreen_toggled"]
+[connection signal="toggled" from="Settings/Mute" to="." method="_on_Mute_toggled"]
+[connection signal="value_changed" from="Settings/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
+[connection signal="value_changed" from="Settings/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="pressed" from="Settings/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Settings/Reset" to="." method="_on_Reset_pressed"]

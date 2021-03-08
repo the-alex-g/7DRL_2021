@@ -22,6 +22,10 @@ onready var _settings := $Settings
 func _ready()->void:
 	_settings.hide()
 	_main_menu.show()
+	_update_labels()
+
+
+func _update_labels()->void:
 	_arrow_keys = OS.get_scancode_string(InputMap.get_action_list("left")[0].scancode) == "Left"
 	$Settings/Movement.text = "Movement-Arrow Keys" if _arrow_keys else "Movement-WASD"
 	$Settings/Attack.text = "Attack-"+_get_key(InputMap.get_action_list("launch_bomb"))
@@ -146,6 +150,54 @@ func _get_event(event_name:String)->InputEventKey:
 	return input
 
 
-func _on_Back_pressed():
+func _on_Back_pressed()->void:
 	_main_menu.show()
 	_settings.hide()
+
+
+func _on_SFXVolume_value_changed(value:int)->void:
+	Jukebox.change_SFX_volume(value)
+
+
+func _on_MusicVolume_value_changed(value:int)->void:
+	Jukebox.change_music_volume(value)
+
+
+func _on_Mute_toggled(button_pressed:bool)->void:
+	Jukebox.mute_all(button_pressed)
+
+
+func _on_Fullscreen_toggled(button_pressed:bool)->void:
+	OS.window_fullscreen = button_pressed
+
+
+func _on_Reset_pressed():
+	var actions := InputMap.get_actions()
+	for action in actions:
+		InputMap.action_erase_events(action)
+	InputMap.action_add_event("left", _get_event("A"))
+	InputMap.action_add_event("right", _get_event("D"))
+	InputMap.action_add_event("up", _get_event("W"))
+	InputMap.action_add_event("down", _get_event("S"))
+	_arrow_keys = false
+	InputMap.action_add_event("launch_bomb", _get_event_mousebutton("LEFT"))
+	InputMap.action_add_event("equip", _get_event_mousebutton("LEFT"))
+	InputMap.action_add_event("drop_item", _get_event_mousebutton("RIGHT"))
+	InputMap.action_add_event("interact", _get_event("E"))
+	InputMap.action_add_event("remove", _get_event("R"))
+	InputMap.action_add_event("inventory", _get_event("I"))
+	InputMap.action_add_event("pickup", _get_event("F"))
+	$Settings/Mute.pressed = false
+	$Settings/MusicVolume.value = 0
+	$Settings/SFXVolume.value = 0
+	_update_labels()
+
+
+func _get_event_mousebutton(event_name:String)->InputEventMouseButton:
+	var event := InputEventMouseButton.new()
+	match event_name:
+		"LEFT":
+			event.button_index = 1
+		"RIGHT":
+			event.button_index = 2
+	return event

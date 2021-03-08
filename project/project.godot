@@ -48,6 +48,10 @@ config/name="7DRL"
 run/main_scene="res://Main/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Jukebox="*res://Sound/Jukebox.tscn"
+
 [display]
 
 window/size/width=600
