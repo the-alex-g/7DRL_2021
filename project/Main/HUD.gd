@@ -22,7 +22,11 @@ onready var _tween := $Tween
 onready var _animation_player := $AnimationPlayer
 
 
-func _process(_delta):
+func _ready()->void:
+	_animation_player.play("fade_in")
+
+
+func _process(_delta:float)->void:
 	if not _player_dead:
 		if Input.is_action_just_pressed("inventory"):
 			if _is_inventory_up:
