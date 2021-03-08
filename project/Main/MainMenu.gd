@@ -22,6 +22,10 @@ onready var _settings := $Settings
 func _ready()->void:
 	_settings.hide()
 	_main_menu.show()
+	$Settings/Mute.pressed = AudioServer.is_bus_mute(Jukebox._master_bus_index)
+	$Settings/Fullscreen.pressed = OS.window_fullscreen
+	$Settings/MusicVolume.value = AudioServer.get_bus_volume_db(Jukebox._music_bus_index)
+	$Settings/SFXVolume.value = AudioServer.get_bus_volume_db(Jukebox._SFX_bus_index)
 	_update_labels()
 
 

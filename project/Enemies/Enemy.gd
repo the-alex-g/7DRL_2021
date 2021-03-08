@@ -27,6 +27,8 @@ var _drop_frequency := 3
 onready var _collision_shape := $CollisionShape2D
 onready var _sprite := $AnimatedSprite
 onready var _animation_player := $AnimationPlayer
+onready var _hit_sound := $Hit
+onready var _dead_sound := $Dead
 
 func _process(delta)->void:
 	if _state == State.IDLE:
@@ -59,8 +61,11 @@ func take_damage(damage)->void:
 		_health -= damage
 		if _health <= 0:
 			_state = State.DEAD
+			_dead_sound.play()
 			emit_signal("dead")
 			_spawn_item()
+		else:
+			_hit_sound.play()
 
 
 func _spawn_item()->void:

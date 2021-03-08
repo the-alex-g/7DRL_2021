@@ -12,7 +12,8 @@ signal fight_started
 
 # variables
 var _ignore
-var _enemies := -1
+var _enemies := 0
+var _active := false
 
 # onready variables
 
@@ -23,21 +24,22 @@ func _ready()->void:
 	_ignore = connect("fight_started", Jukebox, "_on_fight_started")
 
 
-func _on_Area2D_body_entered(body)->void:
-	if body is Player:
-		var bodies := get_overlapping_bodies()
-		if _enemies == -1:
-			_enemies = 0
+func _on_Area2D_body_entered(body:Node)->void:
+	if not _active:
+		if body is Player:
+			var bodies := get_overlapping_bodies()
 			for body in bodies:
 				if body is Enemy:
 					body.active = true
 					_enemies += 1
 					_ignore = body.connect("dead", self, "_on_area_enemy_dead")
-			emit_signal("fight_started")
+			if _enemies > 0:
+				_active = true
+				emit_signal("fight_started")
 
 
 func _on_area_enemy_dead()->void:
 	_enemies -= 1
 	if _enemies == 0:
-		_enemies = -1
+		_active = false
 		emit_signal("area_cleared")

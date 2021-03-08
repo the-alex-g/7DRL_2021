@@ -1,53 +1,55 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Enemies/Boss.gd" type="Script" id=1]
 [ext_resource path="res://Art/Guardian.png" type="Texture" id=2]
+[ext_resource path="res://Sound/EnemyHit.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sound/Crumble.wav" type="AudioStream" id=4]
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=1]
 radius = 16.0
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 40, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 32, 40, 32 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
 region = Rect2( 40, 32, 40, 32 )
 
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 40, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
 region = Rect2( 40, 0, 40, 32 )
 
-[sub_resource type="SpriteFrames" id=18]
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 40, 32 )
+
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 13 ), SubResource( 15 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 4 ) ],
 "loop": true,
 "name": "guard_walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 16 ) ],
-"loop": true,
-"name": "guard_idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 17 ) ],
+"frames": [ SubResource( 5 ) ],
 "loop": true,
 "name": "guard_attack",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "guard_idle",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 6, 16 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=9]
 resource_name = "Die"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -67,17 +69,17 @@ script = ExtResource( 1 )
 _type = "guard"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 12 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 18 )
+frames = SubResource( 7 )
 animation = "guard_attack"
 
 [node name="HitArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 position = Vector2( 12, 0 )
-shape = SubResource( 19 )
+shape = SubResource( 8 )
 
 [node name="HitCooldownTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -88,7 +90,16 @@ wait_time = 0.25
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Die = SubResource( 11 )
+anims/Die = SubResource( 9 )
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 6.0
+bus = "SFX"
+
+[node name="Dead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"
 [connection signal="dead" from="." to="." method="_on_Boss_dead"]
 [connection signal="body_entered" from="HitArea" to="." method="_on_HitArea_body_entered"]
 [connection signal="timeout" from="HitCooldownTimer" to="." method="_on_HitCooldownTimer_timeout"]

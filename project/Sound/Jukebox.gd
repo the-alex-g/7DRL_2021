@@ -36,14 +36,11 @@ func change_SFX_volume(new_volume:int)->void:
 func _on_fight_started()->void:
 	if _fights == 0:
 		_audio_fade.play("to_enemies")
-		print("to_enemies")
 	_fights += 1
 
 
 func _on_area_cleared()->void:
 	_fights -= 1
-	print(_fights)
 	if _fights == 0:
-		print("to_normal")
 		_audio_fade.play("to_normal")
 

@@ -38,6 +38,7 @@ onready var _weapon := $Weapons
 onready var _clothes := $Clothes
 onready var _heal_delay_timer := $HealDelayTimer
 onready var _bomb_delay_timer := $BombTimer
+onready var _hit_sound := $Hit
 
 
 func _ready()->void:
@@ -94,6 +95,8 @@ func take_damage(damage, armor_applies:bool = true)->void:
 		else:
 			emit_signal("update_health", _health)
 			_heal_delay_timer.start(_heal_delay)
+			if not armor_applies:
+				_hit_sound.play()
 
 
 func is_player()->void:
