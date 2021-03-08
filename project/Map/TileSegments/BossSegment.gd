@@ -10,6 +10,7 @@ const BOSS_BRIDGE_ADVANCEMENT := {19:21, 21:23, 20:22, 22:24, 32:33, 33:13, 25:2
 const BOSS := "res://Enemies/Boss.tscn"
 
 # exported variables
+export var _level := 0
 
 # variables
 var _boss_dead := false
@@ -39,6 +40,7 @@ func update_boss_bridges()->void:
 func _spawn_boss()->void:
 	var boss:KinematicBody2D = load(BOSS).instance()
 	boss.position = _boss_position.get_global_transform().origin
+	boss.level = _level
 	_ignore = boss.connect("dead", self, "_on_boss_dead")
 	emit_signal("spawn_boss", boss)
 

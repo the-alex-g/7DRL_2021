@@ -7,7 +7,9 @@ signal spawn_enemies(enemies)
 
 # constants
 const ENEMIES := [
-	"res://Enemies/Boulderman.tscn"
+	"res://Enemies/Boulderman.tscn",
+	"res://Enemies/Boulderman.tscn",
+	"res://Enemies/Plant.tscn",
 ]
 
 # exported variables
@@ -63,9 +65,9 @@ func _on_enemy_dead()->void:
 
 
 
-func _on_VisibilityNotifier2D_viewport_entered(viewport):
+func _on_VisibilityNotifier2D_viewport_entered(_viewport):
 	_can_spawn = false
 
 
-func _on_VisibilityNotifier2D_viewport_exited(viewport):
+func _on_VisibilityNotifier2D_viewport_exited(_viewport):
 	_can_spawn = true

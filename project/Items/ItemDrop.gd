@@ -17,7 +17,7 @@ const ITEM_TYPES := [
 	{"name":"Staff of Healing", "type":"staff", "anim_name":"staff_case", "player_anim_type":"staff_case", "properties":{"_heal_delay":-1}},
 	{"name":"Rod of Defense", "type":"staff", "anim_name":"staff_pronged", "player_anim_type":"staff_pronged", "properties":{"_armor":1}},
 	{"name":"Channeled Detonator", "type":"detonator", "anim_name":"detonator_green", "player_anim_type":"green", "properties":{"_damage_taken":-1}},
-	{"name":"Explosive Detonator", "type":"detonator", "anim_name":"detonator_red", "player_anim_type":"red", "properties":{"_damage_dealt":1, "_damage_taken":1}},
+	{"name":"Solar Detonator", "type":"detonator", "anim_name":"detonator_red", "player_anim_type":"red", "properties":{"_damage_dealt":1, "_damage_taken":1}},
 ]
 
 # exported variables

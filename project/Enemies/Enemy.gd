@@ -46,6 +46,8 @@ func _process(delta)->void:
 		_collision_shape.disabled = true
 	elif _state == State.ATTACKING:
 		_sprite.play(_type+"_attack")
+	elif _state == State.PAUSED:
+		_sprite.play(_type+"_idle")
 
 
 func _on_update_player_position(new_position)->void:

@@ -11,6 +11,7 @@ const CRYSTAL_DROP := "res://Items/Crystal.tscn"
 
 # variables
 var _can_hit := true
+var level := 1
 
 # onready variables
 onready var _punch_range := $HitArea
@@ -20,7 +21,8 @@ onready var _punch_anim_timer := $PunchAnimTimer
 
 func _ready()->void:
 	_drop_frequency = 1
-	_health = 9
+	_damage = level+1
+	_health = (3*level)+6
 
 
 func _on_HitArea_body_entered(body:Node2D)->void:
