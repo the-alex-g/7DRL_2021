@@ -22,10 +22,15 @@ onready var _settings := $Settings
 func _ready()->void:
 	_settings.hide()
 	_main_menu.show()
-
-
-func _process(_delta):
+	_arrow_keys = OS.get_scancode_string(InputMap.get_action_list("left")[0].scancode) == "Left"
 	$Settings/Movement.text = "Movement-Arrow Keys" if _arrow_keys else "Movement-WASD"
+	$Settings/Attack.text = "Attack-"+_get_key(InputMap.get_action_list("launch_bomb"))
+	$Settings/Pickup.text = "Pickup Item-"+_get_key(InputMap.get_action_list("pickup"))
+	$Settings/Discard.text = "Discard Item-"+_get_key(InputMap.get_action_list("remove"))
+	$Settings/Equip.text = "Equip Item-"+_get_key(InputMap.get_action_list("equip"))
+	$Settings/Inventory.text = "Show Inventory-"+_get_key(InputMap.get_action_list("inventory"))
+	$Settings/Interact.text = "Interact-"+_get_key(InputMap.get_action_list("interact"))
+	$Settings/DiscardInventory.text = "Discard Inventory Item-"+_get_key(InputMap.get_action_list("drop_item"))
 
 
 func _input(event:InputEvent)->void:
@@ -35,35 +40,36 @@ func _input(event:InputEvent)->void:
 		match _input_change:
 			InputChange.ATTACK:
 				InputMap.action_add_event("launch_bomb", event)
-				$Settings/Attack.text = "Attack-"+_get_key(event)
+				$Settings/Attack.text = "Attack-"+_get_key([event])
 				_input_change = InputChange.NONE
 			InputChange.INTERACT:
 				InputMap.action_add_event("interact", event)
-				$Settings/Interact.text = "Interact-"+_get_key(event)
+				$Settings/Interact.text = "Interact-"+_get_key([event])
 				_input_change = InputChange.NONE
 			InputChange.INVENTORY:
 				InputMap.action_add_event("inventory", event)
-				$Settings/Inventory.text = "Show Inventory-"+_get_key(event)
+				$Settings/Inventory.text = "Show Inventory-"+_get_key([event])
 				_input_change = InputChange.NONE
 			InputChange.DISCARD_INVENTORY:
 				InputMap.action_add_event("drop_item", event)
-				$Settings/DiscardInventory.text = "Discard Inventory Item-"+_get_key(event)
+				$Settings/DiscardInventory.text = "Discard Inventory Item-"+_get_key([event])
 				_input_change = InputChange.NONE
 			InputChange.PICKUP:
 				InputMap.action_add_event("pickup", event)
-				$Settings/Pickup.text = "Pickup Item-"+_get_key(event)
+				$Settings/Pickup.text = "Pickup Item-"+_get_key([event])
 				_input_change = InputChange.NONE
 			InputChange.DISCARD:
 				InputMap.action_add_event("remove", event)
-				$Settings/Discard.text = "Discard Item-"+_get_key(event)
+				$Settings/Discard.text = "Discard Item-"+_get_key([event])
 				_input_change = InputChange.NONE
 			InputChange.EQUIP:
 				InputMap.action_add_event("equip", event)
-				$Settings/Equip.text = "Equip Item-"+_get_key(event)
+				$Settings/Equip.text = "Equip Item-"+_get_key([event])
 				_input_change = InputChange.NONE
 
 
-func _get_key(event:InputEvent)->String:
+func _get_key(events:Array)->String:
+	var event:InputEvent = events[0]
 	if event is InputEventKey:
 		var scancode:int = event.scancode
 		var key_name := OS.get_scancode_string(scancode)
@@ -122,6 +128,7 @@ func _on_Change_change_input(action:String)->void:
 				InputMap.action_add_event("up", _get_event("UP"))
 				InputMap.action_add_event("down", _get_event("DOWN"))
 				_arrow_keys = true
+			$Settings/Movement.text = "Movement-Arrow Keys" if _arrow_keys else "Movement-WASD"
 		"Discard_Inventory":
 			_input_change = InputChange.DISCARD_INVENTORY
 			InputMap.action_erase_events("drop_item")
