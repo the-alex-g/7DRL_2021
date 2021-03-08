@@ -35,6 +35,7 @@ func _process(_delta:float)->void:
 	if not _waiting_to_spawn:
 		return
 	elif _waiting_to_spawn and _can_spawn:
+		_waiting_to_spawn = false
 		_spawn_enemies()
 
 
