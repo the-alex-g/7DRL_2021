@@ -68,7 +68,6 @@ func _ready():
 			_ignore = start_segment.connect("spawn_enemies", get_parent(), "_on_spawn_enemies")
 			_map_segments.add_child(start_segment)
 			
-	print("special tiles generated \n")
 	for map_position in _map_positions:
 		var tile_segment_position:Vector2 = map_position["position"]
 		var tile_segment_index := randi()%_TILE_SEGMENTS

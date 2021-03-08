@@ -12,9 +12,11 @@ const BOSS := "res://Enemies/Boss.tscn"
 # exported variables
 
 # variables
+var _boss_dead := false
 
 # onready variables
 onready var _boss_position := $Position2D
+onready var _blocker := $StaticBody2D/CollisionShape2D
 
 
 func _ready()->void:
@@ -37,5 +39,15 @@ func update_boss_bridges()->void:
 func _spawn_boss()->void:
 	var boss:KinematicBody2D = load(BOSS).instance()
 	boss.position = _boss_position.get_global_transform().origin
+	_ignore = boss.connect("dead", self, "_on_boss_dead")
 	emit_signal("spawn_boss", boss)
 
+
+func _on_boss_dead():
+	_boss_dead = true
+	_blocker.disabled = true
+
+
+func _on_Area2D_body_entered(body):
+	if body is Player and not _boss_dead:
+		_blocker.set_deferred("disabled", false)

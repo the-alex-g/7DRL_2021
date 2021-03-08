@@ -12,6 +12,12 @@ const ITEM_TYPES := [
 	{"name":"Robe of the Living Garden", "type":"cloak", "anim_name":"cloak_green", "player_anim_type":"robe_green", "properties":{"_damage_taken":-1}},
 	{"name":"Armored Robe", "anim_name":"cloak_armored", "type":"cloak", "player_anim_type":"robe_armored", "properties":{"_armor":1}},
 	{"name":"Robe of Quick Healing", "type":"cloak", "anim_name":"cloak_green", "player_anim_type":"robe_green", "properties":{"_heal_delay":-1}},
+	{"name":"Staff of Dmaje", "type":"staff", "anim_name":"staff_pronged", "player_anim_type":"staff_pronged", "properties":{"_damage_dealt":1, "_damage_taken":1}},
+	{"name":"Staff of Channeling", "type":"staff", "anim_name":"staff_case", "player_anim_type":"staff_case", "properties":{"_damage_dealt":-1, "_damage_taken":-1}},
+	{"name":"Staff of Healing", "type":"staff", "anim_name":"staff_case", "player_anim_type":"staff_case", "properties":{"_heal_delay":-1}},
+	{"name":"Rod of Defense", "type":"staff", "anim_name":"staff_pronged", "player_anim_type":"staff_pronged", "properties":{"_armor":1}},
+	{"name":"Channeled Detonator", "type":"detonator", "anim_name":"detonator_green", "player_anim_type":"green", "properties":{"_damage_taken":-1}},
+	{"name":"Explosive Detonator", "type":"detonator", "anim_name":"detonator_red", "player_anim_type":"red", "properties":{"_damage_dealt":1, "_damage_taken":1}},
 ]
 
 # exported variables

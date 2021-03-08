@@ -28,8 +28,8 @@ func _on_HitArea_body_entered(body:Node2D)->void:
 		body.take_damage(_damage)
 		_can_hit = false
 		_state = State.ATTACKING
-		_hit_cooldown_timer.start()
-		_punch_anim_timer.start()
+		_hit_cooldown_timer.start(1)
+		_punch_anim_timer.start(0.5)
 
 
 func _on_HitCooldownTimer_timeout()->void:

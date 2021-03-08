@@ -15,6 +15,8 @@ export var _time_before_enemies_respawn := 120
 
 # variables
 var current_enemies := 0
+var _can_spawn := false
+var _waiting_to_spawn := false
 
 # onready variables
 onready var _enemy_spawn_points := $EnemySpawnPoints
@@ -27,8 +29,18 @@ func _ready()->void:
 	_spawn_enemies()
 
 
+func _process(_delta:float)->void:
+	if not _waiting_to_spawn:
+		return
+	elif _waiting_to_spawn and _can_spawn:
+		_spawn_enemies()
+
+
 func _on_timer_timeout()->void:
-	_spawn_enemies()
+	if _can_spawn:
+		_spawn_enemies()
+	else:
+		_waiting_to_spawn = true
 
 
 func _spawn_enemies()->void:
@@ -49,3 +61,11 @@ func _on_enemy_dead()->void:
 	if current_enemies == 0:
 		_timer.start(_time_before_enemies_respawn)
 
+
+
+func _on_VisibilityNotifier2D_viewport_entered(viewport):
+	_can_spawn = false
+
+
+func _on_VisibilityNotifier2D_viewport_exited(viewport):
+	_can_spawn = true
