@@ -1,3 +1,4 @@
+class_name NormalSegment
 extends MapSegment
 
 # signals

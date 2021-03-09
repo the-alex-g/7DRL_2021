@@ -1,4 +1,4 @@
-extends "res://Map/TileSegments/NormalSegment.gd"
+extends NormalSegment
 
 # signals
 signal spawn_player(player)

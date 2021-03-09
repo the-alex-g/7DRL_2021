@@ -8,6 +8,7 @@ signal item_equipped(item)
 signal powers_updated(powers)
 signal update_health(health)
 signal player_dead
+signal crystals_changed(value)
 # enums
 
 # constants
@@ -16,6 +17,7 @@ signal player_dead
 
 # variables
 var _ignore
+var _crystals := 0
 
 # onready variables
 onready var _enemies := $Enemies
@@ -49,6 +51,8 @@ func _on_update_position(player_position:Vector2)->void:
 func _on_item_picked_up(item:Dictionary)->void:
 	if item["type"] == "crystal":
 		emit_signal("update_bridges")
+		_crystals += 1
+		emit_signal("crystals_changed", _crystals)
 	emit_signal("item_picked_up", item)
 
 

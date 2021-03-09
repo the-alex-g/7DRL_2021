@@ -8,6 +8,7 @@ extends Node2D
 const _MAP_SEGMENT := "res://Map/TileSegments/Segment"
 const _BOSS_SEGMENT := "res://Map/TileSegments/BossSegment"
 const _PLAYER_START_SEGMENT := "res://Map/TileSegments/StartSegment.tscn"
+const _WIN_SEGMENT := "res://Map/TileSegments/WinSegment.tscn"
 const _MAP_SEGMENT_EXTENSION := ".tscn"
 const _SEGMENT_SIZE := 9
 const _CELL_SIZE := 32
@@ -22,7 +23,7 @@ var _boss_segment_1:Node2D
 var _boss_segment_2:Node2D
 var _map_positions := [
 	{"position":Vector2(0,0), "sides":{"north":true, "south":false, "west":true, "east":false}},
-	{"position":Vector2(0,1), "sides":{"north":false, "south":false, "west":true, "east":false}},
+	{"position":Vector2(0,1), "sides":{"north":false, "south":false, "west":false, "east":false}},
 	{"position":Vector2(0,2), "sides":{"north":false, "south":true, "west":true, "east":false}},
 	{"position":Vector2(1,0), "sides":{"north":true, "south":false, "west":false, "east":false}},
 	{"position":Vector2(2,0), "sides":{"north":true, "south":false, "west":false, "east":false}},
@@ -41,6 +42,12 @@ onready var _map_segments := $MapSegments
 
 func _ready():
 	randomize()
+	var win_segment = load(_WIN_SEGMENT).instance()
+	var what := Vector2(-2,1)
+	what *= _SEGMENT_SIZE*_CELL_SIZE
+	win_segment.position = what
+	_ignore = get_parent().connect("crystals_changed", win_segment, "_on_crystals_changed")
+	_map_segments.add_child(win_segment)
 	for i in 4:
 		var map_positions := _map_positions.size()
 		var index := randi()%map_positions

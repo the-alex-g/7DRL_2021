@@ -5,146 +5,144 @@
 [ext_resource path="res://Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Sound/PlayerHit.wav" type="AudioStream" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
-
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 96, 96, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 64, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 32, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 96, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 96, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 96, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=18]
 animations = [ {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "idle_robe_armored",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 3 ) ],
-"loop": true,
 "name": "idle_robe_green",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "idle_robe_red",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 7 ) ],
-"loop": true,
-"name": "walking_robe_blue",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 8 ), SubResource( 10 ) ],
-"loop": true,
-"name": "walking_robe_armored",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 11 ), SubResource( 13 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 5 ) ],
 "loop": true,
 "name": "walking_robe_red",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 14 ), SubResource( 16 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 6 ), SubResource( 8 ) ],
 "loop": true,
 "name": "walking_robe_green",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 17 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 9 ), SubResource( 11 ) ],
+"loop": true,
+"name": "walking_robe_armored",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ) ],
 "loop": true,
 "name": "idle_robe_blue",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ) ],
+"loop": true,
+"name": "idle_robe_red",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ) ],
+"loop": true,
+"name": "idle_robe_armored",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 17 ) ],
+"loop": true,
+"name": "walking_robe_blue",
 "speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 64, 32, 32 )
+region = Rect2( 32, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 32 )
+region = Rect2( 64, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 32, 32 )
+region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 0, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 64, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 64, 32, 32 )
+region = Rect2( 0, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 64, 32, 32 )
+region = Rect2( 32, 64, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 64, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 2 )
@@ -152,36 +150,36 @@ region = Rect2( 0, 32, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 32, 32, 32 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 32, 32, 32 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 32, 32, 32 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="SpriteFrames" id=31]
 animations = [ {
-"frames": [ SubResource( 19 ) ],
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 19 ), SubResource( 21 ) ],
+"loop": true,
+"name": "walking_staff_pronged",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ) ],
 "loop": true,
 "name": "idle_staff_case",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 20 ), SubResource( 22 ) ],
-"loop": true,
-"name": "walking_staff",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 23 ) ],
-"loop": true,
-"name": "idle_staff",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 24 ), SubResource( 26 ) ],
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 23 ), SubResource( 25 ) ],
 "loop": true,
 "name": "walking_staff_case",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ) ],
+"loop": true,
+"name": "idle_staff",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 27 ) ],
@@ -191,15 +189,14 @@ animations = [ {
 }, {
 "frames": [ SubResource( 28 ), SubResource( 29 ), SubResource( 28 ), SubResource( 30 ) ],
 "loop": true,
-"name": "walking_staff_pronged",
+"name": "walking_staff",
 "speed": 5.0
 } ]
 
+[sub_resource type="CircleShape2D" id=1]
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
 
 [node name="Clothes" type="AnimatedSprite" parent="."]
 frames = SubResource( 18 )
@@ -208,6 +205,9 @@ animation = "walking_robe_green"
 [node name="Weapons" type="AnimatedSprite" parent="."]
 frames = SubResource( 31 )
 animation = "walking_staff_case"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
