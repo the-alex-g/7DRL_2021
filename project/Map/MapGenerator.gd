@@ -11,7 +11,7 @@ const _PLAYER_START_SEGMENT := "res://Map/TileSegments/StartSegment.tscn"
 const _MAP_SEGMENT_EXTENSION := ".tscn"
 const _SEGMENT_SIZE := 9
 const _CELL_SIZE := 32
-const _TILE_SEGMENTS := 1
+const _TILE_SEGMENTS := 3
 
 # exported variables
 

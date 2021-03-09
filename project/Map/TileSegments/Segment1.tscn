@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Map/TileSegments/NormalSegment.gd" type="Script" id=1]
+[ext_resource path="res://Map/TileSegments/IslandTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://Map/TileSegments/IslandArea.gd" type="Script" id=3]
+
+[node name="Segment0" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 0, 5, 0, 1, 8, 0, 3, 5, 0, 4, 17, 0, 5, 8, 0, 65536, 9, 0, 65537, 16, 0, 65538, 14, 0, 65539, 18, 0, 65540, 3, 0, 65541, 7, 0, 65542, 5, 0, 65543, 11, 0, 65544, 8, 0, 131072, 9, 0, 131073, 10, 0, 131075, 6, 0, 131076, 7, 0, 131078, 6, 0, 131079, 15, 0, 131080, 7, 0, 196608, 9, 0, 196609, 2, 0, 196610, 11, 0, 196611, 11, 0, 196612, 11, 0, 196613, 11, 0, 196614, 11, 0, 196615, 17, 0, 196616, 8, 0, 262144, 18, 0, 262145, 3, 0, 262146, 12, 0, 262147, 12, 0, 262148, 15, 0, 262149, 12, 0, 262150, 4, 0, 262151, 0, 0, 262152, 16, 0, 327680, 6, 0, 327681, 7, 0, 327684, 13, 0, 327686, 6, 0, 327687, 12, 0, 327688, 7, 0, 393217, 5, 0, 393218, 8, 0, 393219, 5, 0, 393220, 17, 0, 393221, 8, 0, 458752, 5, 0, 458753, 1, 0, 458754, 16, 0, 458755, 18, 0, 458756, 0, 0, 458757, 10, 0, 458760, 31, 0, 524288, 6, 0, 524289, 12, 0, 524290, 7, 0, 524291, 6, 0, 524292, 15, 0, 524293, 7, 0 )
+
+[node name="EnemySpawnPoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 32, 40 )
+
+[node name="Position2D2" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 40, 144 )
+
+[node name="Position2D3" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 240, 144 )
+
+[node name="Position2D4" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 144, 120 )
+
+[node name="Position2D5" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 48, 240 )
+
+[node name="Position2D6" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 144, 240 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 144, 144 )
+scale = Vector2( 14.4, 14.4 )
+
+[node name="IslandAreas" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="IslandAreas"]
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IslandAreas/Area2D"]
+polygon = PoolVector2Array( 48, 192, 80, 192, 96, 208, 112, 192, 176, 192, 192, 208, 192, 272, 176, 288, 112, 288, 96, 272, 80, 288, 16, 288, 0, 272, 0, 240, 16, 224, 32, 224, 32, 208 )
+
+[node name="Area2D2" type="Area2D" parent="IslandAreas"]
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IslandAreas/Area2D2"]
+polygon = PoolVector2Array( 0, 16, 16, 0, 48, 0, 64, 16, 64, 96, 272, 96, 288, 112, 288, 176, 272, 192, 208, 192, 192, 176, 192, 160, 64, 160, 64, 176, 48, 192, 16, 192, 0, 176 )
+[connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

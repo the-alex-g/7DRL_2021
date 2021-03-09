@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Map/TileSegments/NormalSegment.gd" type="Script" id=1]
+[ext_resource path="res://Map/TileSegments/IslandTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://Map/TileSegments/IslandArea.gd" type="Script" id=3]
+
+[node name="Segment0" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 0, 30, 0, 3, 5, 0, 4, 17, 0, 5, 11, 0, 6, 11, 0, 7, 8, 0, 65537, 29, 0, 65539, 6, 0, 65540, 12, 0, 65541, 15, 0, 65542, 12, 0, 65543, 7, 0, 131074, 5, 0, 131075, 11, 0, 131076, 8, 0, 131077, 13, 0, 196609, 5, 0, 196610, 3, 0, 196611, 15, 0, 196612, 10, 0, 196613, 13, 0, 196614, 5, 0, 196615, 8, 0, 262144, 14, 0, 262145, 18, 0, 262146, 10, 0, 262147, 13, 0, 262148, 9, 0, 262149, 17, 0, 262150, 1, 0, 262151, 16, 0, 262152, 14, 0, 327681, 6, 0, 327682, 7, 0, 327683, 13, 0, 327684, 6, 0, 327685, 12, 0, 327686, 12, 0, 327687, 7, 0, 393219, 13, 0, 458752, 29, 0, 458754, 5, 0, 458755, 17, 0, 458756, 11, 0, 458757, 8, 0, 458759, 29, 0, 524290, 6, 0, 524291, 12, 0, 524292, 15, 0, 524293, 7, 0 )
+
+[node name="EnemySpawnPoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 144, 32 )
+
+[node name="Position2D2" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 176, 32 )
+
+[node name="Position2D3" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 112, 256 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 144, 144 )
+scale = Vector2( 14.4, 14.4 )
+
+[node name="IslandAreas" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="IslandAreas"]
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IslandAreas/Area2D"]
+polygon = PoolVector2Array( 80, 224, 64, 240, 64, 272, 80, 288, 176, 288, 192, 272, 192, 240, 176, 224 )
+
+[node name="Area2D2" type="Area2D" parent="IslandAreas"]
+position = Vector2( 32, -224 )
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="IslandAreas/Area2D2"]
+polygon = PoolVector2Array( 80, 224, 64, 240, 64, 272, 80, 288, 208, 288, 224, 272, 224, 240, 208, 224 )
+[connection signal="viewport_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_entered"]
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]
