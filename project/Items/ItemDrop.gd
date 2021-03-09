@@ -29,6 +29,7 @@ var _item:Dictionary
 var _pickup := false
 var _player:KinematicBody2D = null
 var _label := ItemLabel.new()
+var _popped_up := false
 
 # onready variables
 onready var _item_image := $AnimatedSprite
@@ -44,8 +45,9 @@ func _ready()->void:
 func _process(_delta)->void:
 	if not _pickup:
 		return
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and not _popped_up:
 		z_index = 10
+		_popped_up = true
 		_label.generate_text(_item)
 		add_child(_label)
 	if Input.is_action_just_pressed("remove"):
@@ -66,5 +68,6 @@ func _on_ItemDrop_body_exited(body)->void:
 		z_index = 0
 		_pickup = false
 		_player = null
+		_popped_up = false
 		_label.queue_free()
 		_label = ItemLabel.new()
