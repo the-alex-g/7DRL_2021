@@ -58,6 +58,7 @@ func _physics_process(delta)->void:
 		if Input.is_action_pressed("left"):
 			velocity.x -= 1
 		if velocity != Vector2.ZERO:
+			velocity = velocity.normalized()
 			rotation = velocity.angle()
 			velocity *= _speed*delta
 			_ignore = move_and_collide(velocity)

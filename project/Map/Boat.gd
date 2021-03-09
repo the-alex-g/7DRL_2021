@@ -40,6 +40,7 @@ func depart()->void:
 
 func _on_Area2D_body_entered(body:Node2D)->void:
 	if body is Player and _can_sail:
+		print("sailed")
 		_sailing = true
 		_player = body
 		emit_signal("depart")
@@ -50,7 +51,4 @@ func _on_WinSegment_crystals_changed(value:int)->void:
 	_sprite.play(str(value))
 	if value == 3:
 		_can_sail = true
-
-
-func _on_Timer_timeout():
-	_can_sail = true
+		_area.set_deferred("disabled", false)
