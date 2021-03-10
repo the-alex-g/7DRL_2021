@@ -44,3 +44,8 @@ func _on_area_cleared()->void:
 	if _fights == 0:
 		_audio_fade.play("to_normal")
 
+
+func game_over()->void:
+	_fights = 0
+	_audio_fade.play("to_normal")
+

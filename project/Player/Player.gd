@@ -71,7 +71,8 @@ func _physics_process(delta)->void:
 				detonator.position = get_global_transform().origin
 				detonator.type = _detonator_type
 				detonator.damage = _damage_dealt
-				take_damage(_damage_taken, false)
+				if _damage_taken > 0:
+					take_damage(_damage_taken, false)
 				get_parent().add_child(detonator)
 				_can_throw_bomb = false
 				_bomb_delay_timer.start(_cooldown_time)

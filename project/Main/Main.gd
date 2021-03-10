@@ -69,5 +69,10 @@ func _on_player_update_health(health):
 
 
 func _on_player_dead():
+	Jukebox.game_over()
 	emit_signal("player_dead")
+
+
+func _on_game_won()->void:
+	print("YAY")
 

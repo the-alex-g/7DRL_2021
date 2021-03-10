@@ -47,6 +47,7 @@ func _ready():
 	what *= _SEGMENT_SIZE*_CELL_SIZE
 	win_segment.position = what
 	_ignore = get_parent().connect("crystals_changed", win_segment, "_on_crystals_changed")
+	_ignore = win_segment.connect("won", get_parent(), "_on_game_won")
 	_map_segments.add_child(win_segment)
 	for i in 4:
 		var map_positions := _map_positions.size()

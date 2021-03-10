@@ -2,6 +2,7 @@ extends MapSegment
 
 # signals
 signal crystals_changed(value)
+signal won
 
 # enums
 
@@ -27,3 +28,8 @@ func _on_crystals_changed(value:int)->void:
 
 func _on_Boat_depart():
 	_sailer.play("Sail")
+
+
+func _on_Area2D_body_entered(body):
+	if body is Player:
+		emit_signal("won")
