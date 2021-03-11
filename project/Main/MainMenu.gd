@@ -15,7 +15,7 @@ var _input_change = InputChange.NONE
 var _arrow_keys := false
 
 # onready variables
-onready var _main_menu := $VBoxContainer
+onready var _main_menu := $Menu
 onready var _settings := $Settings
 onready var _story := $Story
 
