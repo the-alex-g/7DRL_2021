@@ -2,6 +2,7 @@ extends Node2D
 
 # signals
 signal update_bridges
+signal won
 signal update_player_position(new_position)
 signal item_picked_up(item)
 signal item_equipped(item)
@@ -74,5 +75,5 @@ func _on_player_dead():
 
 
 func _on_game_won()->void:
-	print("YAY")
+	emit_signal("won")
 

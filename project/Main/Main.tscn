@@ -17,4 +17,5 @@ script = ExtResource( 2 )
 [connection signal="powers_updated" from="." to="HUD" method="_on_Main_powers_updated"]
 [connection signal="update_bridges" from="." to="MapGenerator" method="_on_Main_update_bridges"]
 [connection signal="update_health" from="." to="HUD" method="_on_Main_update_health"]
+[connection signal="won" from="." to="HUD" method="_on_Main_won"]
 [connection signal="item_equipped" from="HUD" to="." method="_on_HUD_item_equipped"]

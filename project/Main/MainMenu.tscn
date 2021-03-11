@@ -40,6 +40,12 @@ margin_right = 71.0
 margin_bottom = 92.0
 text = "Settings"
 
+[node name="Story" type="Button" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 71.0
+margin_bottom = 140.0
+text = "Story"
+
 [node name="Settings" type="GridContainer" parent="."]
 visible = false
 anchor_left = 0.5
@@ -236,8 +242,32 @@ margin_top = 488.0
 margin_right = 413.0
 margin_bottom = 532.0
 text = "Reset to Defaults"
+
+[node name="Story" type="Control" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -131.0
+margin_bottom = 131.0
+
+[node name="StoryLabel" type="Label" parent="Story"]
+margin_right = 600.0
+margin_bottom = 214.0
+text = "The \"name here\" people's sun was dying. They were forced to migrate underground, where they found a lake of magical blue liquid and animated stones. They learned to harness the magic of the liquid, but all the while their dying star was getting closer and closer to destroying their world. The people built a stabilizer device, but the liquid was not powerful enough to use it. They sent their most skilled warrior into the realm of the stone men with the mission of returning with three \"other name here\" crystals..."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="StoryBack" type="Button" parent="Story"]
+margin_left = 250.0
+margin_top = 300.0
+margin_right = 350.0
+margin_bottom = 262.0
+text = "Back"
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Story" to="." method="_on_Story_pressed"]
 [connection signal="change_input" from="Settings/Change" to="." method="_on_Change_change_input"]
 [connection signal="change_input" from="Settings/Change2" to="." method="_on_Change_change_input"]
 [connection signal="change_input" from="Settings/Change3" to="." method="_on_Change_change_input"]
@@ -252,3 +282,4 @@ text = "Reset to Defaults"
 [connection signal="value_changed" from="Settings/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
 [connection signal="pressed" from="Settings/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="Settings/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="Story/StoryBack" to="." method="_on_StoryBack_pressed"]

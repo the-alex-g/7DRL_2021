@@ -58,6 +58,11 @@ func _on_Main_update_health(current_health:int)->void:
 
 func _on_Main_player_dead():
 	_player_dead = true
+	$Foreground/Label.text = "Let's try that again."
+	game_over()
+
+
+func game_over()->void:
 	_animation_player.stop()
 	_animation_player.play("fade_out")
 
@@ -68,3 +73,8 @@ func _on_Button_pressed():
 
 func _on_Main_pressed():
 	_ignore = get_tree().change_scene("res://Main/MainMenu.tscn")
+
+
+func _on_Main_won():
+	$Foreground/Label.text = "The stabilizer has been powered. \n It will keep the star at bay, but for how long?"
+	_animation_player.play("win")

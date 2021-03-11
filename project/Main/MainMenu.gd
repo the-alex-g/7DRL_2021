@@ -17,6 +17,7 @@ var _arrow_keys := false
 # onready variables
 onready var _main_menu := $VBoxContainer
 onready var _settings := $Settings
+onready var _story := $Story
 
 
 func _ready()->void:
@@ -205,3 +206,13 @@ func _get_event_mousebutton(event_name:String)->InputEventMouseButton:
 		"RIGHT":
 			event.button_index = 2
 	return event
+
+
+func _on_Story_pressed():
+	_main_menu.hide()
+	_story.show()
+
+
+func _on_StoryBack_pressed():
+	_story.hide()
+	_main_menu.show()
