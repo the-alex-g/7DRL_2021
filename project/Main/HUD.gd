@@ -76,20 +76,18 @@ func _on_Main_pressed():
 
 
 func _on_Main_won():
-	$Foreground/Label.text = "The stabilizer has been powered. \n It will keep the star at bay, but for how long?"
 	_win_animator.play("win")
 
 
 func _on_Tutorial_won():
 	_tutorial = true
-	$Foreground/VBoxContainer/Button.hide()
+	$Sprite/VBoxContainer/Button.hide()
 	_animation_player.play("tutorial_win")
 
 
 func _on_Tutorial_player_dead():
 	_tutorial = true
 	_player_dead = true
-	$Foreground/Label.text = "Let's try that again."
 	_animation_player.play("fade_out_lose")
 
 
