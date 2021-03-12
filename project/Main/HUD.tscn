@@ -9,9 +9,9 @@
 [ext_resource path="res://Theme.tres" type="Theme" id=7]
 [ext_resource path="res://Art/EndGame.png" type="Texture" id=8]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "win"
-length = 4.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Win:modulate")
 tracks/0/interp = 1
@@ -56,10 +56,10 @@ tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
 "clips": PoolStringArray( "fade_out_win" ),
-"times": PoolRealArray( 4.2 )
+"times": PoolRealArray( 4 )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "down"
 length = 0.5
 tracks/0/type = "value"
@@ -75,7 +75,7 @@ tracks/0/keys = {
 "values": [ -150.0, -74.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "fade_in"
 length = 1.5
 tracks/0/type = "value"
@@ -151,7 +151,7 @@ tracks/5/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=4]
 resource_name = "fade_out_lose"
 length = 5.0
 tracks/0/type = "value"
@@ -241,7 +241,7 @@ tracks/6/keys = {
 " ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 resource_name = "fade_out_win"
 length = 8.0
 tracks/0/type = "value"
@@ -287,7 +287,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 7.1, 8.1 ),
+"times": PoolRealArray( 7.1, 8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -332,9 +332,9 @@ It will keep the star at bay, but for how long?
 " ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=6]
 resource_name = "tutorial_win"
-length = 8.0
+length = 7.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Foreground:modulate")
 tracks/0/interp = 1
@@ -366,7 +366,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 7.1 ),
+"times": PoolRealArray( 6.2 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -378,7 +378,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 7.1, 8.1 ),
+"times": PoolRealArray( 6.2, 7.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -390,7 +390,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.8, 8 ),
+"times": PoolRealArray( 0.8, 7.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -402,7 +402,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.8, 1.8, 6.9, 8 ),
+"times": PoolRealArray( 0.8, 1.8, 6, 7.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
@@ -422,7 +422,7 @@ tracks/6/keys = {
 " ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Inventory/TextureRect:margin_top")
@@ -437,7 +437,7 @@ tracks/0/keys = {
 "values": [ -74.0, -150.0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=8]
 resource_name = "win"
 length = 4.0
 tracks/0/type = "value"
@@ -491,44 +491,44 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 600, 0, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 1200, 0, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 600, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 600, 600, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 1200, 600, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 1200, 600, 600 )
 
-[sub_resource type="SpriteFrames" id=19]
+[sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": false,
 "name": "Win",
 "speed": 5.0
@@ -550,7 +550,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -59.0
-margin_top = -74.0
+margin_top = -150.0
 margin_right = 59.0
 texture = ExtResource( 5 )
 __meta__ = {
@@ -584,19 +584,19 @@ margin_bottom = -76.0
 [node name="Tween" type="Tween" parent="."]
 
 [node name="WinAnimator" type="AnimationPlayer" parent="."]
-anims/win = SubResource( 5 )
+anims/win = SubResource( 1 )
 
 [node name="Game" type="AnimationPlayer" parent="."]
-anims/down = SubResource( 6 )
-anims/fade_in = SubResource( 7 )
-anims/fade_out_lose = SubResource( 8 )
-anims/fade_out_win = SubResource( 9 )
-anims/tutorial_win = SubResource( 20 )
-anims/up = SubResource( 10 )
-anims/win = SubResource( 11 )
+anims/down = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
+anims/fade_out_lose = SubResource( 4 )
+anims/fade_out_win = SubResource( 5 )
+anims/tutorial_win = SubResource( 6 )
+anims/up = SubResource( 7 )
+anims/win = SubResource( 8 )
 
 [node name="Win" type="AnimatedSprite" parent="."]
-frames = SubResource( 19 )
+frames = SubResource( 16 )
 animation = "Win"
 frame = 6
 centered = false
@@ -623,7 +623,6 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Foreground"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
