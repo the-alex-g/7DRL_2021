@@ -82,7 +82,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2, 8, 14 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ "Pay attention now.", "Use Left Click to throw a detonator towards the mouse pointer. Use WASD to move.", "The stone men are very terratorial. They will only attack when you enter their island.", "Be warned, however. Using your powers will take some of your energy. If you throw too many bombs, you could die. Luckily, you regenerate quickly." ]
+"values": [ "Pay attention now.", "Use Left Click to throw a detonator towards the mouse pointer. Use WASD to move.", "The stone men are very territorial. They will only attack when you enter their island.", "Be warned, however. Using your powers will take some of your energy. If you throw too many bombs, you could die. Luckily, you regenerate quickly." ]
 }
 
 [node name="Tutorial" type="Node2D"]

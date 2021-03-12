@@ -200,7 +200,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0.8 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "Let's ty that again.
+"values": [ "Let's try that again.
 
 " ]
 }
@@ -389,44 +389,44 @@ tracks/0/keys = {
 "values": [ -74.0, -150.0 ]
 }
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 600, 0, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 1200, 0, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 600, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 600, 600, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 1200, 600, 600, 600 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 1200, 600, 600 )
 
-[sub_resource type="SpriteFrames" id=16]
+[sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": false,
 "name": "Win",
 "speed": 5.0
@@ -448,7 +448,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -59.0
-margin_top = -74.0
+margin_top = -150.0
 margin_right = 59.0
 texture = ExtResource( 5 )
 __meta__ = {
@@ -494,12 +494,13 @@ anims/up = SubResource( 7 )
 
 [node name="Win" type="AnimatedSprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-frames = SubResource( 16 )
+frames = SubResource( 15 )
 animation = "Win"
 frame = 6
 centered = false
 
 [node name="Sprite" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 theme = ExtResource( 7 )
 texture = ExtResource( 6 )
 __meta__ = {
@@ -514,8 +515,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 margin_top = -45.0
 margin_bottom = 45.0
-text = "The stabilizer has been powered.
-It will keep the star at bay, but for how long?
+text = "Let's ty that again.
 
 "
 align = 1
