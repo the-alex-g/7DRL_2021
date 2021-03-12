@@ -6,3 +6,6 @@ project/logs
 
 # LMMS Backup files
 *mmpz.bak
+
+# Temporary Kate files
+.*kate-swp
