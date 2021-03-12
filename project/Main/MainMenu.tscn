@@ -266,21 +266,27 @@ __meta__ = {
 }
 
 [node name="Play" type="Button" parent="Menu/VBoxContainer"]
-margin_right = 71.0
+margin_right = 72.0
 margin_bottom = 44.0
 text = "Play"
 
-[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+[node name="Tutorial" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 48.0
-margin_right = 71.0
+margin_right = 72.0
 margin_bottom = 92.0
-text = "Settings"
+text = "Tutorial"
 
 [node name="Story" type="Button" parent="Menu/VBoxContainer"]
 margin_top = 96.0
-margin_right = 71.0
+margin_right = 72.0
 margin_bottom = 140.0
 text = "Story"
+
+[node name="Settings" type="Button" parent="Menu/VBoxContainer"]
+margin_top = 144.0
+margin_right = 72.0
+margin_bottom = 188.0
+text = "Settings"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Menu"]
 anchor_right = 1.0
@@ -320,5 +326,6 @@ align = 1
 [connection signal="pressed" from="Settings/Reset" to="." method="_on_Reset_pressed"]
 [connection signal="pressed" from="Story/StoryBack" to="." method="_on_StoryBack_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_Play_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Tutorial" to="." method="_on_Tutorial_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Story" to="." method="_on_Story_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]

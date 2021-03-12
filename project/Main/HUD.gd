@@ -87,7 +87,8 @@ func _on_Main_won():
 func _on_Tutorial_won():
 	_tutorial = true
 	$Foreground/Label.text = "Good job. You are ready for the real mission."
-	_animation_player.play("win")
+	$Foreground/VBoxContainer/Button.hide()
+	game_over()
 
 
 func _on_Tutorial_player_dead():

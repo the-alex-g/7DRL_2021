@@ -17,7 +17,7 @@ onready var _anim_cooldown := $AnimTimer
 
 func _ready()->void:
 	_health = 8
-	_drop_frequency = 2
+	drop_frequency = 2
 	_damage = 3
 	_speed = 5
 

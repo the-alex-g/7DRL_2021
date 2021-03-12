@@ -21,7 +21,7 @@ onready var _punch_anim_timer := $PunchAnimTimer
 
 func _ready()->void:
 	rotation = 0.5*PI
-	_drop_frequency = 1
+	drop_frequency = 1
 	_damage = level+1
 	_health = (6*level)+3
 

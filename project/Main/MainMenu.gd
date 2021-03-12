@@ -216,3 +216,7 @@ func _on_Story_pressed():
 func _on_StoryBack_pressed():
 	_story.hide()
 	_main_menu.show()
+
+
+func _on_Tutorial_pressed():
+	_ignore = get_tree().change_scene("res://Main/Tutorial.tscn")

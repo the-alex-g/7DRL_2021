@@ -105,4 +105,4 @@ func _on_InventoryItem_item_dropped(slot:int)->void:
 func _on_HUD_powers_updated(powers:Dictionary)->void:
 	_armor.text = str(powers["armor"])
 	_damage.text = str(powers["damage"])
-	_damage_taken.text = str(powers["damage taken"])
+	_damage_taken.text = str(powers["damage taken"]) if powers["damage taken"] >= 0 else "0"
