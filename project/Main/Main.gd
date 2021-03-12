@@ -3,6 +3,7 @@ extends Node2D
 # signals
 signal update_bridges
 signal won
+signal item_hovered(value)
 signal update_player_position(new_position)
 signal item_picked_up(item)
 signal item_equipped(item)
@@ -31,6 +32,7 @@ func _on_spawn_player(player:KinematicBody2D)->void:
 	_ignore = player.connect("update_health", self, "_on_player_update_health")
 	_ignore = player.connect("dead", self, "_on_player_dead")
 	_ignore = connect("item_equipped", player, "_on_item_equipped")
+	_ignore = connect("item_hovered", player, "_set_item_hovered")
 	call_deferred("add_child", player)
 
 
@@ -77,3 +79,6 @@ func _on_player_dead():
 func _on_game_won()->void:
 	emit_signal("won")
 
+
+func _on_HUD_item_hovered(value:bool)->void:
+	emit_signal("item_hovered", value)

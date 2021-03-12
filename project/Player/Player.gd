@@ -32,6 +32,7 @@ var _detonator_type := "blue"
 var _dead := false
 var _can_throw_bomb := true
 var _cooldown_time := 1.6
+var _item_hovered := false
 
 # onready variables
 onready var _weapon := $Weapons
@@ -66,7 +67,7 @@ func _physics_process(delta)->void:
 		_get_animation(velocity)
 		
 		if Input.is_action_just_pressed("launch_bomb"):
-			if _can_throw_bomb:
+			if _can_throw_bomb and not _item_hovered:
 				var detonator = DETONATOR.instance()
 				detonator.position = get_global_transform().origin
 				detonator.type = _detonator_type
@@ -141,5 +142,9 @@ func _on_HealDelayTimer_timeout()->void:
 		emit_signal("update_health", _health)
 
 
-func _on_BombTimer_timeout():
+func _on_BombTimer_timeout()->void:
 	_can_throw_bomb = true
+
+
+func _set_item_hovered(value:bool)->void:
+	_item_hovered = value

@@ -103,7 +103,13 @@ __meta__ = {
 }
 [connection signal="inventory_item_equipped" from="GridContainer/InventoryItem1" to="." method="_on_InventoryItem_inventory_item_equipped"]
 [connection signal="item_dropped" from="GridContainer/InventoryItem1" to="." method="_on_InventoryItem_item_dropped"]
+[connection signal="mouse_entered" from="GridContainer/InventoryItem1" to="." method="_on_InventoryItem_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/InventoryItem1" to="." method="_on_InventoryItem_mouse_exited"]
 [connection signal="inventory_item_equipped" from="GridContainer/InventoryItem2" to="." method="_on_InventoryItem_inventory_item_equipped"]
 [connection signal="item_dropped" from="GridContainer/InventoryItem2" to="." method="_on_InventoryItem_item_dropped"]
+[connection signal="mouse_entered" from="GridContainer/InventoryItem2" to="." method="_on_InventoryItem_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/InventoryItem2" to="." method="_on_InventoryItem_mouse_exited"]
 [connection signal="inventory_item_equipped" from="GridContainer/InventoryItem3" to="." method="_on_InventoryItem_inventory_item_equipped"]
 [connection signal="item_dropped" from="GridContainer/InventoryItem3" to="." method="_on_InventoryItem_item_dropped"]
+[connection signal="mouse_entered" from="GridContainer/InventoryItem3" to="." method="_on_InventoryItem_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/InventoryItem3" to="." method="_on_InventoryItem_mouse_exited"]

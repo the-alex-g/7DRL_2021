@@ -150,4 +150,5 @@ anims/Start = SubResource( 6 )
 [connection signal="spawn_player" from="StartSegment" to="." method="_on_StartSegment_spawn_player"]
 [connection signal="depart" from="Boat" to="." method="_on_Boat_depart"]
 [connection signal="item_equipped" from="HUD" to="." method="_on_HUD_item_equipped"]
+[connection signal="item_hovered" from="HUD" to="." method="_on_HUD_item_hovered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

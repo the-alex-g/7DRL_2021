@@ -4,6 +4,7 @@ extends CanvasLayer
 signal item_picked_up(item)
 signal item_equipped(item)
 signal powers_updated(powers)
+signal item_hovered(value)
 
 # enums
 
@@ -90,3 +91,7 @@ func _on_Tutorial_player_dead():
 	_player_dead = true
 	$Foreground/Label.text = "Let's try that again."
 	_animation_player.play("fade_out_lose")
+
+
+func _on_GridContainer_item_hovered(value:bool)->void:
+	emit_signal("item_hovered", value)

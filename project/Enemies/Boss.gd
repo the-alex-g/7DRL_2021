@@ -26,13 +26,27 @@ func _ready()->void:
 	_health = (6*level)+3
 
 
+func _process(_delta)->void:
+	if not _can_hit:
+		return
+	else:
+		var _bodies:Array = _punch_range.get_overlapping_bodies()
+		for body in _bodies:
+			if body is Player and _state != State.DEAD:
+				hit(body)
+
+
+func hit(body:Node2D)->void:
+	body.take_damage(_damage)
+	_can_hit = false
+	_state = State.ATTACKING
+	_hit_cooldown_timer.start(1)
+	_punch_anim_timer.start(0.5)
+
+
 func _on_HitArea_body_entered(body:Node2D)->void:
 	if body is Player and _can_hit and _state != State.DEAD:
-		body.take_damage(_damage)
-		_can_hit = false
-		_state = State.ATTACKING
-		_hit_cooldown_timer.start(1)
-		_punch_anim_timer.start(0.5)
+		hit(body)
 
 
 func _on_HitCooldownTimer_timeout()->void:

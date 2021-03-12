@@ -648,5 +648,6 @@ text = "Main Menu"
 [connection signal="item_picked_up" from="." to="Inventory/TextureRect/GridContainer" method="_on_HUD_item_picked_up"]
 [connection signal="powers_updated" from="." to="Inventory/TextureRect/GridContainer" method="_on_HUD_powers_updated"]
 [connection signal="equipped_item" from="Inventory/TextureRect/GridContainer" to="." method="_on_GridContainer_equipped_item"]
+[connection signal="item_hovered" from="Inventory/TextureRect/GridContainer" to="." method="_on_GridContainer_item_hovered"]
 [connection signal="pressed" from="Foreground/VBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Foreground/VBoxContainer/Main" to="." method="_on_Main_pressed"]

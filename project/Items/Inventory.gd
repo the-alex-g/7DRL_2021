@@ -2,6 +2,7 @@ extends Control
 
 # signals
 signal equipped_item(item)
+signal item_hovered(value)
 
 # enums
 
@@ -106,3 +107,11 @@ func _on_HUD_powers_updated(powers:Dictionary)->void:
 	_armor.text = str(powers["armor"])
 	_damage.text = str(powers["damage"])
 	_damage_taken.text = str(powers["damage taken"]) if powers["damage taken"] >= 0 else "0"
+
+
+func _on_InventoryItem_mouse_entered():
+	emit_signal("item_hovered", true)
+
+
+func _on_InventoryItem_mouse_exited():
+	emit_signal("item_hovered", false)

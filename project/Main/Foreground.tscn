@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Art/ExplosiveRange.png" type="Texture" id=1]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -68,11 +70,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.2, 0.2, 0.2, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scale = Vector2( 9.33467, 9.39373 )
+texture = ExtResource( 1 )
+centered = false

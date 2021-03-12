@@ -9,6 +9,7 @@ signal powers_updated(powers)
 signal update_health(health)
 signal player_dead
 signal crystals_changed(value)
+signal item_hovered(value)
 
 # enums
 
@@ -56,6 +57,7 @@ func _on_StartSegment_spawn_player(player:KinematicBody2D)->void:
 	_ignore = player.connect("update_health", self, "_on_player_update_health")
 	_ignore = player.connect("dead", self, "_on_player_dead")
 	_ignore = connect("item_equipped", player, "_on_item_equipped")
+	_ignore = connect("item_hovered", player, "_set_item_hovered")
 	call_deferred("add_child", player)
 
 
@@ -105,3 +107,7 @@ func _on_Area2D_body_entered(body):
 		if body is Player:
 			_area_entered = true
 			_text_animation.play("BossIslandEntered")
+
+
+func _on_HUD_item_hovered(value:bool)->void:
+	emit_signal("item_hovered", value)

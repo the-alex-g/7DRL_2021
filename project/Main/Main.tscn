@@ -19,3 +19,4 @@ script = ExtResource( 2 )
 [connection signal="update_health" from="." to="HUD" method="_on_Main_update_health"]
 [connection signal="won" from="." to="HUD" method="_on_Main_won"]
 [connection signal="item_equipped" from="HUD" to="." method="_on_HUD_item_equipped"]
+[connection signal="item_hovered" from="HUD" to="." method="_on_HUD_item_hovered"]
