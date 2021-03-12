@@ -15,6 +15,7 @@ signal powers_updated(powers)
 var _ignore
 var _is_inventory_up := false
 var _player_dead := false
+var _tutorial := false
 
 # onready variables
 onready var _healthbar := $Inventory/TextureRect/TextureProgress
@@ -68,7 +69,10 @@ func game_over()->void:
 
 
 func _on_Button_pressed():
-	_ignore = get_tree().change_scene("res://Main/Main.tscn")
+	if not _tutorial:
+		_ignore = get_tree().change_scene("res://Main/Main.tscn")
+	else:
+		_ignore = get_tree().change_scene("res://Main/Tutorial.tscn")
 
 
 func _on_Main_pressed():
@@ -78,3 +82,16 @@ func _on_Main_pressed():
 func _on_Main_won():
 	$Foreground/Label.text = "The stabilizer has been powered. \n It will keep the star at bay, but for how long?"
 	_animation_player.play("win")
+
+
+func _on_Tutorial_won():
+	_tutorial = true
+	$Foreground/Label.text = "Good job. You are ready for the real mission."
+	_animation_player.play("win")
+
+
+func _on_Tutorial_player_dead():
+	_tutorial = true
+	_player_dead = true
+	$Foreground/Label.text = "Let's try that again."
+	game_over()

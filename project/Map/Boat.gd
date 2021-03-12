@@ -40,7 +40,6 @@ func depart()->void:
 
 func _on_Area2D_body_entered(body:Node2D)->void:
 	if body is Player and _can_sail:
-		print("sailed")
 		_sailing = true
 		_player = body
 		emit_signal("depart")

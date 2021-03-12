@@ -291,17 +291,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Menu/VBoxContainer2"]
-margin_top = 56.0
 margin_right = 600.0
-margin_bottom = 165.0
+margin_bottom = 109.0
 custom_fonts/font = SubResource( 1 )
 text = "Fathom"
 align = 1
 
 [node name="Label2" type="Label" parent="Menu/VBoxContainer2"]
-margin_top = 169.0
+margin_top = 113.0
 margin_right = 600.0
-margin_bottom = 211.0
+margin_bottom = 155.0
 custom_fonts/font = SubResource( 2 )
 text = "incursion"
 align = 1

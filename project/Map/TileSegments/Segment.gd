@@ -12,13 +12,13 @@ const CONNECTION_TO_SIDE := {15:12, 16:10, 17:11, 18:9}
 const BOSS_BRIDGE_SECTIONS := [19, 20, 32, 33, 26, 25]
 
 # exported variables
+export var north := false
+export var south := false
+export var east := false
+export var west := false
 
 # variables
 var _ignore
-var north := false
-var south := false
-var east := false
-var west := false
 var _bridges := []
 var _connections := []
 var _bridges_on_edge := []

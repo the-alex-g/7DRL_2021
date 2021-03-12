@@ -345,6 +345,7 @@ anims/up = SubResource( 4 )
 anims/win = SubResource( 5 )
 
 [node name="Win" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 frames = SubResource( 13 )
 animation = "Win"
 frame = 6
