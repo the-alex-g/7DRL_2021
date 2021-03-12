@@ -20,7 +20,8 @@ var _tutorial := false
 # onready variables
 onready var _healthbar := $Inventory/TextureRect/TextureProgress
 onready var _tween := $Tween
-onready var _animation_player := $AnimationPlayer
+onready var _animation_player := $Game
+onready var _win_animator := $WinAnimator
 
 
 func _ready()->void:
@@ -59,13 +60,7 @@ func _on_Main_update_health(current_health:int)->void:
 
 func _on_Main_player_dead():
 	_player_dead = true
-	$Foreground/Label.text = "Let's try that again."
-	game_over()
-
-
-func game_over()->void:
-	_animation_player.stop()
-	_animation_player.play("fade_out")
+	_animation_player.play("fade_out_lose")
 
 
 func _on_Button_pressed():
@@ -81,18 +76,17 @@ func _on_Main_pressed():
 
 func _on_Main_won():
 	$Foreground/Label.text = "The stabilizer has been powered. \n It will keep the star at bay, but for how long?"
-	_animation_player.play("win")
+	_win_animator.play("win")
 
 
 func _on_Tutorial_won():
 	_tutorial = true
-	$Foreground/Label.text = "Good job. You are ready for the real mission."
 	$Foreground/VBoxContainer/Button.hide()
-	game_over()
+	_animation_player.play("tutorial_win")
 
 
 func _on_Tutorial_player_dead():
 	_tutorial = true
 	_player_dead = true
 	$Foreground/Label.text = "Let's try that again."
-	game_over()
+	_animation_player.play("fade_out_lose")

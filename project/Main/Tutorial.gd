@@ -23,11 +23,11 @@ var _enemy_died := false
 var _item_picked_up := false
 
 # onready variables
+onready var _text_animation := $TextAnimator
 
 
 func _ready()->void:
-	$HUD/Label.text = "Now, don't go dashing off anywhere before I'm done speaking."
-	$Timer4.start(4)
+	_text_animation.play("Start")
 
 
 func _on_BossSegment0_spawn_boss(boss:KinematicBody2D)->void:
@@ -47,7 +47,7 @@ func _on_StartSegment_spawn_enemies(enemies:Array)->void:
 func _on_enemy_dead()->void:
 	if not _enemy_died:
 		_enemy_died = true
-		$HUD/Label.text = "Some enemies will drop treasure. When next to it, press E to see what it does. Press F to pick it up. Press R to throw it away."
+		_text_animation.play("EnemyDied")
 
 
 func _on_StartSegment_spawn_player(player:KinematicBody2D)->void:
@@ -65,11 +65,10 @@ func _on_update_position(player_position:Vector2)->void:
 
 func _on_item_picked_up(item:Dictionary)->void:
 	if not _item_picked_up:
-		$HUD/Label.text = "Press I to expand your inventory. Left click on an item in the bottom row to equip it. Right click to throw it away."
-		$Timer3.start(6)
+		_text_animation.play("Pickup")
 		_item_picked_up = true
 	if item["type"] == "crystal":
-		$HUD/Label.text = "Once you have picked up three Othal crystals, find the boat we have waiting for you. It will take you to the stabilizer."
+		_text_animation.play("CrystalPickup")
 		emit_signal("crystals_changed", 3)
 		emit_signal("item_picked_up", item)
 		emit_signal("item_picked_up", item)
@@ -101,26 +100,8 @@ func _on_Boat_depart()->void:
 	emit_signal("won")
 
 
-func _on_Timer_timeout():
-	$HUD/Label.text = "The enemy is very terratorial. They will only attack when you enter their island."
-	$Timer2.start(6)
-
-
-func _on_Timer2_timeout():
-	$HUD/Label.text = "Be warned, however. Using your powers will take some of your energy. If you throw too many bombs, you could die. Luckily, you regenerate quickly. \nOkay, let's see what you can do now."
-
-
-func _on_Timer3_timeout():
-	$HUD/Label.text = "The shield icon in your inventory is the amount of armor you have, the circle is the damage you do, and the arrow is the cost of your attacks."
-
-
-func _on_Timer4_timeout():
-	$HUD/Label.text = "Use Left Click to throw a detonator towards the mouse pointer. Use WASD to move."
-	$Timer.start(6)
-
-
 func _on_Area2D_body_entered(body):
 	if not _area_entered:
 		if body is Player:
 			_area_entered = true
-			$HUD/Label.text = "The guardians protect the crystals we need. Once you enter their islands, you cannot escape until they are dead."
+			_text_animation.play("BossIslandEntered")

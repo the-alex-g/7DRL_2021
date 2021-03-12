@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Map/TileSegments/StartSegment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Map/TileSegments/BossSegment0.tscn" type="PackedScene" id=2]
@@ -10,6 +10,83 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27.9441, 10 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "BossIslandEntered"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "The guardians protect the crystals we need. Once you enter their islands, you cannot escape until they are dead." ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "CrystalPickup"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Once you have picked up three Othal crystals, find the boat we have waiting for you. It will take you to the stabilizer." ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "EnemyDied"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "Some enemies will drop treasure. When next to it, press E to see what it does. Press F to pick it up. Press R to throw it away." ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Pickup"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "Press I to expand your inventory. Left click on an item in the bottom row to equip it. Right click to throw it away.", "The shield icon in your inventory is the amount of armor you have, the circle is the damage you do, and the arrow is the cost of your attacks." ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Start"
+length = 14.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 8, 14 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "Pay attention now.", "Use Left Click to throw a detonator towards the mouse pointer. Use WASD to move.", "The stone men are very terratorial. They will only attack when you enter their island.", "Be warned, however. Using your powers will take some of your energy. If you throw too many bombs, you could die. Luckily, you regenerate quickly." ]
+}
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource( 4 )
@@ -37,18 +114,6 @@ east = true
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 position = Vector2( -16, 144 )
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Timer4" type="Timer" parent="."]
-one_shot = true
-
-[node name="Timer2" type="Timer" parent="."]
-one_shot = true
-
-[node name="Timer3" type="Timer" parent="."]
-one_shot = true
-
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
 [node name="Label" type="Label" parent="HUD"]
@@ -58,8 +123,7 @@ margin_bottom = 85.0
 custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.215686, 1, 1, 1 )
-text = "Attack/move
-"
+text = "Pay attention now."
 align = 1
 autowrap = true
 __meta__ = {
@@ -71,6 +135,13 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 141.375, 234.987 )
 shape = SubResource( 1 )
+
+[node name="TextAnimator" type="AnimationPlayer" parent="."]
+anims/BossIslandEntered = SubResource( 2 )
+anims/CrystalPickup = SubResource( 6 )
+anims/EnemyDied = SubResource( 3 )
+anims/Pickup = SubResource( 4 )
+anims/Start = SubResource( 5 )
 [connection signal="crystals_changed" from="." to="Boat" method="_on_WinSegment_crystals_changed"]
 [connection signal="item_picked_up" from="." to="HUD" method="_on_Main_item_picked_up"]
 [connection signal="player_dead" from="." to="HUD" method="_on_Tutorial_player_dead"]
@@ -81,9 +152,5 @@ shape = SubResource( 1 )
 [connection signal="spawn_enemies" from="StartSegment" to="." method="_on_StartSegment_spawn_enemies"]
 [connection signal="spawn_player" from="StartSegment" to="." method="_on_StartSegment_spawn_player"]
 [connection signal="depart" from="Boat" to="." method="_on_Boat_depart"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="Timer4" to="." method="_on_Timer4_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
-[connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]
 [connection signal="item_equipped" from="HUD" to="." method="_on_HUD_item_equipped"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
