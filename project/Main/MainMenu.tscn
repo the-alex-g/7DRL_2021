@@ -237,7 +237,7 @@ margin_bottom = 131.0
 [node name="StoryLabel" type="Label" parent="Story"]
 margin_right = 600.0
 margin_bottom = 214.0
-text = "The \"name here\" people's sun was dying. They were forced to migrate underground, where they found a lake of magical blue liquid and animated stones. They learned to harness the magic of the liquid, but all the while their dying star was getting closer and closer to destroying their world. The people built a stabilizer device, but the liquid was not powerful enough to use it. They sent their most skilled warrior into the realm of the stone men with the mission of returning with three Othal crystals..."
+text = "The Oqua people's sun was dying. They were forced to migrate underground, where they found a lake of magical blue liquid and animated stones. They learned to harness the magic of the liquid, but all the while their dying star was getting closer and closer to destroying their world. The Oqua built a stabilizer device, but the liquid was not powerful enough to use it. They sent their most skilled warrior into the realm of the stone men with the mission of returning with three Othal crystals..."
 align = 1
 valign = 1
 autowrap = true
